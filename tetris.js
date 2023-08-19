@@ -37,7 +37,7 @@ var cur_time, end_game, start_time;
 
 let piece = [];
 let state = new Array(board.row + 1);
-var moveable = false, osu, cur_time, cur_piece = 0;
+var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0;
 
 function time_elapsed(){
     osu = setInterval(function() {
@@ -149,7 +149,7 @@ function erase(){
 
 function current_piece(id){
     moveable = true;
-    var r = 1, c = 4, index = id;
+    r = 1, c = 4, index = id;
     // console.log(index, id);
     // console.log(index, r, c, state[r][c]);
     if(check(index, r, c) == false){
@@ -168,7 +168,6 @@ function current_piece(id){
         }
         else{
             console.log("FALSE");
-            if(end_game == true) clearInterval(lap);
             console.log(index, r - 1, c);
             add(index, r - 1, c);
             fill(); board.gravity--;
@@ -187,12 +186,22 @@ function fill(){
     }
     update_color();
 }
+
 function move_left(){
     if(c > 1){
-        c--;
-        if(check()){
+        c--; erase();
+        if(check(index, r, c) == false) c++;
+        add(index, r, c);
+        update_color();
+    }
+}
 
-        }
+function move_right(){
+    if(c < board.col){
+        c++; erase();
+        if(check(index, r, c) == false) c--;
+        add(index, r, c);
+        update_color();
     }
 }
 
@@ -241,9 +250,9 @@ document.onkeydown = (e) => {
     }
 }
 
-// function game_over(){
-//    clearInterval(osu); end_game = 1; return; 
-// }
+function game_over(){
+   end_game = 1; return; 
+}
 window.addEventListener('load', function(){
     time_elapsed();
     init();
