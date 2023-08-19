@@ -5,7 +5,7 @@ var board = {
     col: 10,
     gravity: 1000,
     reset: 50,
-    num_bag: 1
+    num_bag: 2
 };
 
 // import {generate_bag} from "pieces.js";
@@ -157,7 +157,6 @@ function current_piece(id){
         game_over(); return;
     }
     add(index, r, c); update_color();
-    var dropable = true;
     var lap = setInterval(function(){
         erase(); 
         update_color(); 
@@ -169,17 +168,15 @@ function current_piece(id){
         }
         else{
             console.log("FALSE");
-            dropable = false;
-            moveable = false;
+            if(end_game == true) clearInterval(lap);
             console.log(index, r - 1, c);
             add(index, r - 1, c);
-            fill(); clearInterval(lap);
+            fill(); board.gravity--;
+            if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
+            current_piece(piece[++cur_piece]);
+            clearInterval(lap);
         }
     }, board.gravity);
-    board.gravity -= 20;
-    // console.log(2, dropable);
-    // console.log(dropable);
-    // console.log(3, dropable);
 }
 
 function fill(){
@@ -230,10 +227,7 @@ function init2(){
         for(var j = 0; j < 7; j++) piece.push(bag[j]);
     }
     moveable = true;
-    for(var i = 0; i < 1; i++){
-        console.log("PIECE: ", piece.length, piece, moveable);
-        current_piece(piece[i]);
-    }
+    current_piece(piece[cur_piece]);
 }
 
 
