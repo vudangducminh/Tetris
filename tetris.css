@@ -1,0 +1,24 @@
+body {
+    background-color: black;
+    text-align: center;
+}
+#design {
+    display: flex;
+    text-align: center;
+}
+
+#BoardTetris table {
+    border-collapse: collapse;
+    font-size: 150%;
+    font-family: sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    border: 3px solid white;
+}
+
+#BoardTetris table td {
+    background-color: black;
+    width: 27px;
+    height: 27px;
+    border: 0.5px solid  rgb(202, 194, 194);
+}
