@@ -38,7 +38,7 @@ var cur_time, end_game, start_time;
 
 let piece = [];
 let state = new Array(board.row + 1);
-var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0;
+var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 90;
 
 function time_elapsed(){
     osu = setInterval(function() {
@@ -48,7 +48,7 @@ function time_elapsed(){
 }
 
 function reset_all(){
-    moveable = false; end_game = 0; clearInterval(osu); cur_piece = 0; board.gravity = 1000;
+    clearInterval(osu); moveable = false; end_game = 0; cur_piece = 0; board.gravity = 1000;
     piece = [];
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);
@@ -129,6 +129,16 @@ function fill_segment(x1, y1, x2, y2, color){
         }
     }
 }
+
+function check_segment(x1, y1, x2, y2){
+    if(x1 < 1 || y1 < 1 || x2 > board.row || y2 > board.col) return false;
+    for(var i = x1; i <= x2; i++){
+        for(var j = y1; j <= y2; j++){
+            if(ok(state[i][j])) return false;
+        }
+    }
+    return true;
+}
 function add(index, r, c){
     if(index == 1){
         fill_segment(r, c, r, c + 3, 8);
@@ -161,8 +171,172 @@ function add(index, r, c){
     return true;
 }
 
-function clockwise(index, r, c){
+function clockwise(){
+    if(index == 2){
+        if(degree == 90){
+            if(check_segment(r - 1, c, r + 1, c) && check_segment(r - 1, c + 1, r - 1, c + 1)){
+                erase();
+                fill_segment(r - 1, c, r + 1, c, 9);
+                fill_segment(r - 1, c + 1, r - 1, c + 1, 9);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 180){
+            if(check_segment(r, c - 1, r, c + 1) && check_segment(r + 1, c + 1, r + 1, c + 1)){
+                erase();
+                fill_segment(r, c - 1, r, c + 1, 9);
+                fill_segment(r + 1, c + 1, r + 1, c + 1, 9);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 270){
+            if(check_segment(r - 1, c, r + 1, c) && check_segment(r + 1, c - 1, r + 1, c - 1)){
+                erase();
+                fill_segment(r - 1, c, r + 1, c, 9);
+                fill_segment(r + 1, c - 1, r + 1, c - 1, 9);
+                update_color(); degree = 0;
+            }
+            else return false;
+        }
+        else{
+            if(check_segment(r, c - 1, r, c + 1) && check_segment(r - 1, c - 1, r - 1, c - 1)){
+                erase();
+                fill_segment(r, c - 1, r, c + 1, 9);
+                fill_segment(r - 1, c - 1, r - 1, c - 1, 9);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+    }
+    if(index == 3){
+        if(degree == 90){
+            if(check_segment(r - 1, c, r + 1, c) && check_segment(r + 1, c + 1, r + 1, c + 1)){
+                erase();
+                fill_segment(r - 1, c, r + 1, c, 10);
+                fill_segment(r + 1, c + 1, r + 1, c + 1, 10);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 180){
+            if(check_segment(r, c - 1, r, c + 1) && check_segment(r + 1, c - 1, r + 1, c - 1)){
+                erase();
+                fill_segment(r, c - 1, r, c + 1, 10);
+                fill_segment(r + 1, c - 1, r + 1, c - 1, 10);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 270){
+            if(check_segment(r - 1, c, r + 1, c) && check_segment(r - 1, c - 1, r - 1, c - 1)){
+                erase();
+                fill_segment(r - 1, c, r + 1, c, 10);
+                fill_segment(r - 1, c - 1, r - 1, c - 1, 10);
+                update_color(); degree = 0;
+            }
+            else return false;
+        }
+        else{
+            if(check_segment(r, c - 1, r, c + 1) && check_segment(r - 1, c + 1, r - 1, c + 1)){
+                erase();
+                fill_segment(r, c - 1, r, c + 1, 10);
+                fill_segment(r - 1, c + 1, r - 1, c + 1, 10);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+    }
+    if(index == 5){
+        if(degree == 90){
+            if(check_segment(r, c, r + 1, c) && check_segment(r - 1, c + 1, r, c + 1)){
+                erase();
+                fill_segment(r, c, r + 1, c, 12);
+                fill_segment(r - 1, c + 1, r, c + 1, 12);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 180){
+            if(check_segment(r, c - 1, r, c) && check_segment(r + 1, c, r + 1, c + 1)){
+                erase();
+                fill_segment(r, c - 1, r, c, 12);
+                fill_segment(r + 1, c, r + 1, c + 1, 12);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 270){
+            if(check_segment(r - 1, c, r, c) && check_segment(r, c - 1, r + 1, c - 1)){
+                erase();
+                fill_segment(r - 1, c, r, c, 12);
+                fill_segment(r, c - 1, r + 1, c - 1, 12);
+                update_color(); degree = 0;
+            }
+            else return false;
+        }
+        else{
+            if(check_segment(r - 1, c - 1, r - 1, c) && check_segment(r, c, r, c + 1)){
+                erase();
+                fill_segment(r - 1, c - 1, r - 1, c, 12);
+                fill_segment(r, c, r, c + 1, 12);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+    }
+    if(index == 6){
+        if(degree == 90){
+            if(check_segment(r - 1, c, r, c) && check_segment(r, c + 1, r + 1, c + 1)){
+                erase();
+                fill_segment(r - 1, c, r, c, 13);
+                fill_segment(r, c + 1, r + 1, c + 1, 13);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 180){
+            if(check_segment(r, c, r, c + 1) && check_segment(r + 1, c - 1, r + 1, c)){
+                erase();
+                fill_segment(r, c, r, c + 1, 13);
+                fill_segment(r + 1, c - 1, r + 1, c, 13);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 270){
+            if(check_segment(r - 1, c - 1, r, c - 1) && check_segment(r, c, r + 1, c)){
+                erase();
+                fill_segment(r - 1, c - 1, r, c - 1, 13);
+                fill_segment(r, c, r + 1, c, 13);
+                update_color(); degree = 0;
+            }
+            else return false;
+        }
+        else{
+            if(check_segment(r - 1, c, r - 1, c + 1) && check_segment(r, c - 1, r, c)){
+                erase();
+                fill_segment(r - 1, c, r - 1, c + 1, 13);
+                fill_segment(r, c - 1, r, c, 13);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+    }
+    if(index == 7){
+        
+    }
+    return true;
+}
 
+function counterclockwise(){
+    degree += 180;
+    if(degree >= 360) degree -= 360;
+    if(clockwise() == false){
+        degree -= 180;
+        if(degree < 0) degree += 360;
+    }
 }
 function dropping(){
     for(var i = board.row; i >= 1; i--){
@@ -183,7 +357,7 @@ function dropping(){
             }
         }
     }
-    update_color();
+    update_color(); r++;
     return true;
 }
 
@@ -219,17 +393,20 @@ function check(index, r, c){
     return true;
 }
 function current_piece(id){
-    moveable = true; degree = 0;
+    moveable = true; degree = 90;
     r = 1, c = 4, index = id;
     if(check(index, r, c) == false){
         moveable = false;
         game_over(); return;
     }
     add(index, r, c); update_color();
+    if(index == 1) r = 1, c = 5;
+    else r = 2, c = 5;
     var lap = setInterval(function(){
         if(dropping() == true);
         else{
-            fill(); board.gravity--;
+            fill(); 
+            // board.gravity--;
             if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
             current_piece(piece[++cur_piece]);
             clearInterval(lap);
@@ -255,6 +432,7 @@ function move_left(){
             }
         }
     }
+    c--;
     for(var i = 1; i <= board.row; i++){
         for(var j = 1; j <= board.col; j++){
             if(state[i][j] >= 8){
@@ -264,6 +442,7 @@ function move_left(){
         }
     }
     update_color();
+
 }
 
 function move_right(){
@@ -275,6 +454,7 @@ function move_right(){
             }
         }
     }
+    c++;
     for(var i = 1; i <= board.row; i++){
         for(var j = board.col; j >= 1; j--){
             if(state[i][j] >= 8){
@@ -328,10 +508,12 @@ function init2(){
 document.onkeydown = (e) => {
     e = e || window.event;
     if(moveable == true){
-        // console.log(e.keyCode);
+        console.log(e.keyCode);
         if(e.keyCode == 188) move_left();
         if(e.keyCode == 191) move_right();              
         if(e.keyCode == 190) move_down(); 
+        if(e.keyCode == 88) var x = clockwise();
+        if(e.keyCode == 90) counterclockwise();
     }
 }
 
@@ -339,10 +521,9 @@ function game_over(){
    end_game = 1; return; 
 }
 window.addEventListener('load', function(){
-    time_elapsed();
     init();
 });
 function New_game(){
-    time_elapsed();
+    reset_all();
 	window.location.reload();
 }
