@@ -38,7 +38,7 @@ var cur_time, end_game, start_time;
 
 let piece = [];
 let state = new Array(board.row + 1);
-var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 0;
+var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0;
 
 function time_elapsed(){
     osu = setInterval(function() {
@@ -287,53 +287,7 @@ function move_right(){
 }
 
 function move_down(){
-    for(var i = 1; i < board.row; i++){
-        var flag = 0, check1 = 0, check2 = 0;
-        for(var j = 1; j <= board.col; j++){
-            if(state[i][j] >= 8){
-                if(i + 1 <= board.row && !ok(state[i + 1][j])) check1 = 1;
-                else flag = 1;
-            }
-            if(index != 1){
-                if(state[i + 1][j] >= 8){
-                    if(i + 2 <= board.row && !ok(state[i + 2][j])) check2 = 1;
-                    else flag = 1;
-                }
-            }
-        }
-        if(!flag){  
-            if(index != 1){
-                if(check1 && check2){
-                    for(var j = 1; j <= board.col; j++){
-                        if(state[i + 1][j] >= 8){
-                            ch = true;
-                            // console.log("OSU!", i + 2, j);
-                            state[i + 2][j] = state[i + 1][j];
-                            state[i + 1][j] = 0;
-                        }
-                    }
-                    for(var j = 1; j <= board.col; j++){
-                        if(state[i][j] >= 8){
-                            // console.log("OXY!", i, j);
-                            state[i + 1][j] = state[i][j];
-                            state[i][j] = 0;
-                        }
-                    }
-                }
-            }
-            else{
-                for(var j = 1; j <= board.col; j++){
-                    if(state[i][j] >= 8){
-                        // console.log("OXY!", i, j);
-                        state[i + 1][j] = state[i][j];
-                        state[i][j] = 0;
-                    }
-                }
-            }
-        }
-        else break;
-    }
-    update_color();
+    while(dropping() == true) update_color();
 }
 
 function init(){
