@@ -3,9 +3,10 @@ const gameBoard = document.getElementById('BoardTetris');
 var board = {
     row: 20,
     col: 10,
-    gravity: 1000,
+    gravity: 2000,
     reset: 50,
-    num_bag: 2
+    num_bag: 1000,
+    delay: 4000
 };
 
 // import {generate_bag} from "pieces.js";
@@ -37,7 +38,7 @@ var cur_time, end_game, start_time;
 
 let piece = [];
 let state = new Array(board.row + 1);
-var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0;
+var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 0;
 
 function time_elapsed(){
     osu = setInterval(function() {
@@ -47,7 +48,7 @@ function time_elapsed(){
 }
 
 function reset_all(){
-    moveable = false; end_game = 0; clearInterval(osu); cur_piece = 0;
+    moveable = false; end_game = 0; clearInterval(osu); cur_piece = 0; board.gravity = 1000;
     piece = [];
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);
@@ -61,7 +62,38 @@ function hash(i, j){
     return (i - 1) * board.col + j;
 }
 
+function clear_lines(){
+    for(var i = board.row; i >= 1; i--){
+        var flag = 0;
+        for(var j = 1; j <= board.col; j++){
+            if(state[i][j] == 0 || state[i][j] >= 8){
+                flag = 1; break;
+            }
+        }
+        if(!flag){
+            for(var j = 1; j <= board.col; j++) state[i][j] = 0;
+            var cnt = i;
+            for(var l = i; l >= 1; l--){
+                var check = 0;
+                for(var r = 1; r <= board.col; r++){
+                    if(state[l][r] > 0 && state[l][r] < 8){
+                        check = 1; break;
+                    }
+                }
+                if(check){
+                    for(var j = 1; j <= board.col; j++){
+                        state[cnt][j] = state[l][j];
+                        state[l][j] = 0;
+                    }
+                    cnt--;
+                }
+            }
+        }
+    }
+}
+
 function update_color(){
+    clear_lines();
     for(var i = 1; i <= board.row; i++){
         for(var j = 1; j <= board.col; j++){
             let cell = document.getElementById(hash(i, j));
@@ -90,29 +122,77 @@ function ok(a){
     else return false;
 }
 
+function fill_segment(x1, y1, x2, y2, color){
+    for(var i = x1; i <= x2; i++){
+        for(var j = y1; j <= y2; j++){
+            state[i][j] = color;
+        }
+    }
+}
 function add(index, r, c){
     if(index == 1){
-        state[r][c] = state[r][c + 1] = state[r][c + 2] = state[r][c + 3] = 8; 
+        fill_segment(r, c, r, c + 3, 8);
     }
     if(index == 2){
-        state[r + 1][c] = state[r + 1][c + 1] = state[r + 1][c + 2] = state[r][c] = 9; 
+        fill_segment(r + 1, c, r + 1, c + 2, 9);
+        fill_segment(r, c, r, c, 9);
     }
     if(index == 3){
-        state[r + 1][c] = state[r + 1][c + 1] = state[r + 1][c + 2] = state[r][c + 2] = 10; 
+        fill_segment(r + 1, c, r + 1, c + 2, 10);
+        fill_segment(r, c + 2, r, c + 2, 10);
     }
     if(index == 4){
+        fill_segment(r + 1, c, r + 1, c + 1, 11);
+        fill_segment(r, c, r, c + 1, 11);
         state[r][c] = state[r][c + 1] = state[r + 1][c] = state[r + 1][c + 1] = 11; 
     }
     if(index == 5){
-        state[r][c] = state[r][c + 1] = state[r + 1][c + 1] = state[r + 1][c + 2] = 12; 
+        fill_segment(r, c, r, c + 1, 12);
+        fill_segment(r + 1, c + 1, r + 1, c + 2, 12);
     }
     if(index == 6){
-        state[r + 1][c] = state[r + 1][c + 1] = state[r][c + 1] = state[r][c + 2] = 13; 
+        fill_segment(r, c + 1, r, c + 2, 13);
+        fill_segment(r + 1, c, r + 1, c + 1, 13);
     }
     if(index == 7){
-        state[r + 1][c] = state[r + 1][c + 1] = state[r + 1][c + 2] = state[r][c + 1] = 14;
+        fill_segment(r, c + 1, r, c + 1, 14);
+        fill_segment(r + 1, c, r + 1, c + 2, 14);
     }
     return true;
+}
+
+function clockwise(index, r, c){
+
+}
+function dropping(){
+    for(var i = board.row; i >= 1; i--){
+        for(var j = 1; j <= board.col; j++){
+            if(state[i][j] >= 8){
+                // console.log(i, j);
+                if(i + 1 <= board.row && !ok(state[i + 1][j])) continue;
+                else return false;
+            }
+        }
+    }
+    for(var i = board.row; i >= 1; i--){
+        for(var j = 1; j <= board.col; j++){
+            if(state[i][j] >= 8){
+                // console.log(i, j);
+                state[i + 1][j] = state[i][j]; 
+                state[i][j] = 0;
+            }
+        }
+    }
+    update_color();
+    return true;
+}
+
+function erase(){
+    for(var i = 1; i <= board.row; i++){
+        for(var j = 1; j <= board.col; j++){
+            if(state[i][j] >= 8) state[i][j] = 0;
+        }
+    }
 }
 function check(index, r, c){
     if(index == 1){
@@ -138,38 +218,17 @@ function check(index, r, c){
     }
     return true;
 }
-
-function erase(){
-    for(var i = 1; i <= board.row; i++){
-        for(var j = 1; j <= board.col; j++){
-            if(state[i][j] >= 8) state[i][j] = 0;
-        }
-    }
-}
-
 function current_piece(id){
-    moveable = true;
+    moveable = true; degree = 0;
     r = 1, c = 4, index = id;
-    // console.log(index, id);
-    // console.log(index, r, c, state[r][c]);
     if(check(index, r, c) == false){
         moveable = false;
         game_over(); return;
     }
     add(index, r, c); update_color();
     var lap = setInterval(function(){
-        erase(); 
-        update_color(); 
-        r++;
-        // end_game = 1; return;
-        if(check(index, r, c) == true){
-            add(index, r, c);
-            update_color();
-        }
+        if(dropping() == true);
         else{
-            console.log("FALSE");
-            console.log(index, r - 1, c);
-            add(index, r - 1, c);
             fill(); board.gravity--;
             if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
             current_piece(piece[++cur_piece]);
@@ -188,21 +247,93 @@ function fill(){
 }
 
 function move_left(){
-    if(c > 1){
-        c--; erase();
-        if(check(index, r, c) == false) c++;
-        add(index, r, c);
-        update_color();
+    for(var i = 1; i <= board.row; i++){
+        for(var j = 1; j <= board.col; j++){
+            if(state[i][j] >= 8){
+                if(j > 1 && !ok(state[i][j - 1])) continue;
+                else return;
+            }
+        }
     }
+    for(var i = 1; i <= board.row; i++){
+        for(var j = 1; j <= board.col; j++){
+            if(state[i][j] >= 8){
+                state[i][j - 1] = state[i][j];
+                state[i][j] = 0;
+            }
+        }
+    }
+    update_color();
 }
 
 function move_right(){
-    if(c < board.col){
-        c++; erase();
-        if(check(index, r, c) == false) c--;
-        add(index, r, c);
-        update_color();
+    for(var i = 1; i <= board.row; i++){
+        for(var j = board.col; j >= 1; j--){
+            if(state[i][j] >= 8){
+                if(j < board.col && !ok(state[i][j + 1])) continue;
+                else return;
+            }
+        }
     }
+    for(var i = 1; i <= board.row; i++){
+        for(var j = board.col; j >= 1; j--){
+            if(state[i][j] >= 8){
+                state[i][j + 1] = state[i][j];
+                state[i][j] = 0;
+            }
+        }
+    }
+    update_color();
+}
+
+function move_down(){
+    for(var i = 1; i < board.row; i++){
+        var flag = 0, check1 = 0, check2 = 0;
+        for(var j = 1; j <= board.col; j++){
+            if(state[i][j] >= 8){
+                if(i + 1 <= board.row && !ok(state[i + 1][j])) check1 = 1;
+                else flag = 1;
+            }
+            if(index != 1){
+                if(state[i + 1][j] >= 8){
+                    if(i + 2 <= board.row && !ok(state[i + 2][j])) check2 = 1;
+                    else flag = 1;
+                }
+            }
+        }
+        if(!flag){  
+            if(index != 1){
+                if(check1 && check2){
+                    for(var j = 1; j <= board.col; j++){
+                        if(state[i + 1][j] >= 8){
+                            ch = true;
+                            // console.log("OSU!", i + 2, j);
+                            state[i + 2][j] = state[i + 1][j];
+                            state[i + 1][j] = 0;
+                        }
+                    }
+                    for(var j = 1; j <= board.col; j++){
+                        if(state[i][j] >= 8){
+                            // console.log("OXY!", i, j);
+                            state[i + 1][j] = state[i][j];
+                            state[i][j] = 0;
+                        }
+                    }
+                }
+            }
+            else{
+                for(var j = 1; j <= board.col; j++){
+                    if(state[i][j] >= 8){
+                        // console.log("OXY!", i, j);
+                        state[i + 1][j] = state[i][j];
+                        state[i][j] = 0;
+                    }
+                }
+            }
+        }
+        else break;
+    }
+    update_color();
 }
 
 function init(){
