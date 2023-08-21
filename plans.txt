@@ -1,3 +1,4 @@
+- add multi key press
 - add score
 - bug new game
 - need hold & 180 spin
@@ -5,3 +6,5 @@
 - add queue
 - add number of used pieces & cleared lines
 - add gravity increase based on time elapsed
+- add tsd, tst, b2b 
+- add DAS

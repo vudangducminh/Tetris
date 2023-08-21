@@ -1,4 +1,5 @@
 function counterclockwise(){
+    if(moveable == false) return;
     degree += 180;
     if(degree >= 360) degree -= 360;
     if(clockwise() == false){
@@ -7,6 +8,7 @@ function counterclockwise(){
     }
 }
 function clockwise(){
+    if(moveable == false) return false;
     if(index == 2){
         if(degree == 90){
             if(check_segment(r - 1, c, r + 1, c) && check_segment(r - 1, c + 1, r - 1, c + 1)){

@@ -1,4 +1,8 @@
-function dropping(){
+function dropping(type){
+    if(type == 0){
+        if(moveable == false) return false;
+        if(dropable == false) return false;
+    }
     for(var i = board.row; i >= 1; i--){
         for(var j = 1; j <= board.col; j++){
             if(state[i][j] >= 8){
@@ -22,6 +26,7 @@ function dropping(){
 }
 
 function move_left(){
+    if(moveable == false) return;
     for(var i = 1; i <= board.row; i++){
         for(var j = 1; j <= board.col; j++){
             if(state[i][j] >= 8){
@@ -44,6 +49,7 @@ function move_left(){
 }
 
 function move_right(){
+    if(moveable == false) return;
     for(var i = 1; i <= board.row; i++){
         for(var j = board.col; j >= 1; j--){
             if(state[i][j] >= 8){
@@ -64,11 +70,15 @@ function move_right(){
     update_color();
 }
 
-function soft_drop(){
-    while(dropping() == true) update_color();
+function soft_drop(type){
+    if(moveable == false) return;
+    if(type == 1) movement = false, dropable = false;
+    while(dropping(1) == true) update_color();
+    if(type == 1) fill();
 }
 
 function hard_drop(){
-    soft_drop(); movement = false; dropable = 0;
+    if(moveable == false) return;
+    soft_drop(1);
 }
 

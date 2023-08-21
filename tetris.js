@@ -6,7 +6,7 @@ var board = {
     gravity: 500,
     reset: 50,
     num_bag: 1000,
-    delay: 5000
+    delay: 2000
 };
 
 
