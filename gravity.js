@@ -13,14 +13,16 @@ function current_piece(id){
     lap = setInterval(function(){ 
         num_lap++;
         // console.log(num_lap);
-        if(num_lap % (board.current_gravity / board.reset) == 0){   
-            if(dropping(0) == true){
-                dropable = 1, board.current_gravity = board.gravity;
+        if(num_lap % (board.current_gravity / board.reset) == 0){
+            moveable = false;
+            if(dropping() == true){
+                moveable = dropable = true, board.current_gravity = board.gravity;
                 update_color();
             }
             else{
+                console.log("FAKE STOP: ", r, c);
                 if(dropable == false){ 
-                    moveable = dropable = false;
+                    console.log("REAL STOP: ", r, c);
                     fill();
                     board.current_gravity = board.gravity;  
                     if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
@@ -28,9 +30,8 @@ function current_piece(id){
                     clearInterval(lap);
                 }
                 else{
-                    dropable = 0; 
+                    moveable = true; dropable = false; 
                     board.current_gravity = board.delay;
-                    update_color();
                 }
             }
         }

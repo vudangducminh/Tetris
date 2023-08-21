@@ -1,14 +1,4 @@
-function dropping(type){
-    if(type == 0){
-        if(moveable == false){
-            if(dropable == false) movement = false;
-            return false;
-        }
-        if(dropable == false){    
-            if(dropable == false) movement = false;
-            return false;
-        }
-    }
+function dropping(){
     var flag = 0;
     for(var i = min(board.row, r + 2); i >= max(1, r - 2); i--){
         for(var j = max(1, c - 2); j <= min(board.col, c + 2); j++){
@@ -38,6 +28,7 @@ function dropping(type){
 }
 
 function move_left(){
+    console.log("LEFT: ", r, c);
     if(moveable == false) return;
     for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
         for(var j = max(1, c - 2); j <= min(board.col, c + 2); j++){
@@ -61,6 +52,7 @@ function move_left(){
 }
 
 function move_right(){
+    console.log("RIGHT: ", r, c);
     if(moveable == false) return;
     for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
         for(var j = min(board.col, c + 2); j >= max(1, c - 2); j--){
@@ -85,7 +77,7 @@ function move_right(){
 function soft_drop(type){
     if(moveable == false) return;
     if(type == 1) movement = false, dropable = false;
-    while(dropping(type) == true) update_color();
+    while(dropping() == true) update_color();
     if(type == 1) fill();
 }
 

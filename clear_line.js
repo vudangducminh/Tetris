@@ -12,7 +12,7 @@ function clear_lines(){
             for(var j = 1; j <= board.col; j++) state[i][j] = 0;
         }
     }
-    for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
+    for(var i = min(board.row, r + 2); i >= 1; i--){
         var flag = 0;
         for(var j = 1; j <= board.col; j++){
             if(state[i][j]){
