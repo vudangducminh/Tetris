@@ -3,10 +3,10 @@ const gameBoard = document.getElementById('BoardTetris');
 var board = {
     row: 20,
     col: 10,
-    gravity: 2000,
+    gravity: 1000,
     reset: 50,
     num_bag: 1000,
-    delay: 4000
+    delay: 5000
 };
 
 
@@ -33,7 +33,7 @@ function time_elapsed(){
 }
 
 function reset_all(){
-    clearInterval(osu); moveable = false; end_game = 0; cur_piece = 0; dropable = 1; board.gravity = 1000;
+    clearInterval(osu); moveable = false; end_game = 0; cur_piece = 0; dropable = 1; board.gravity = 500;
     piece = [];
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);

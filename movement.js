@@ -64,7 +64,7 @@ function move_right(){
     update_color();
 }
 
-function move_down(){
+function soft_drop(){
     while(dropping() == true) update_color();
 }
 
