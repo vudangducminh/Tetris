@@ -68,5 +68,7 @@ function soft_drop(){
     while(dropping() == true) update_color();
 }
 
-
+function hard_drop(){
+    soft_drop(); movement = false; dropable = 0;
+}
 

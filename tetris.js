@@ -3,7 +3,7 @@ const gameBoard = document.getElementById('BoardTetris');
 var board = {
     row: 20,
     col: 10,
-    gravity: 1000,
+    gravity: 500,
     reset: 50,
     num_bag: 1000,
     delay: 5000
@@ -11,7 +11,7 @@ var board = {
 
 
 
-var cur_time, end_game, start_time, dropable;
+var cur_time, end_game, start_time, dropable, lap, num_lap;
 // 0 -> blank
 // 1 -> I (light blue)
 // 2 -> L (blue)
@@ -23,7 +23,7 @@ var cur_time, end_game, start_time, dropable;
 
 let piece = [];
 let state = new Array(board.row + 1);
-var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 90;
+var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 90, num_lap = 0;
 
 function time_elapsed(){
     osu = setInterval(function() {
@@ -33,7 +33,7 @@ function time_elapsed(){
 }
 
 function reset_all(){
-    clearInterval(osu); moveable = false; end_game = 0; cur_piece = 0; dropable = 1; board.gravity = 500;
+    clearInterval(osu); clearInterval(lap); moveable = false; end_game = 0; cur_piece = 0; dropable = 1; board.gravity = 500;
     piece = [];
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);
