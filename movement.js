@@ -3,15 +3,18 @@ function dropping(type){
         if(moveable == false) return false;
         if(dropable == false) return false;
     }
+    var flag = 0;
     for(var i = board.row; i >= 1; i--){
         for(var j = 1; j <= board.col; j++){
             if(state[i][j] >= 8){
+                flag = 1;
                 // console.log(i, j);
                 if(i + 1 <= board.row && !ok(state[i + 1][j])) continue;
                 else return false;
             }
         }
     }
+    if(!flag) return false;
     for(var i = board.row; i >= 1; i--){
         for(var j = 1; j <= board.col; j++){
             if(state[i][j] >= 8){
@@ -79,6 +82,6 @@ function soft_drop(type){
 
 function hard_drop(){
     if(moveable == false) return;
-    soft_drop(1);
+    soft_drop(1); board.current_gravity = board.gravity;
 }
 

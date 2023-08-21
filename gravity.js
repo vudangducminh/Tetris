@@ -13,11 +13,11 @@ function current_piece(id){
     lap = setInterval(function(){ 
         num_lap++;
         // console.log(num_lap);
-        if(num_lap % (board.gravity / board.reset) == 0){   
-            if(dropping(0) == true) dropable = 1, board.gravity = 500;
+        if(num_lap % (board.current_gravity / board.reset) == 0){   
+            if(dropping(0) == true) dropable = 1, board.current_gravity = board.gravity;
             else{
                 if(dropable == 0){
-                    board.gravity = 500; 
+                    board.current_gravity = board.gravity; 
                     fill();
                     if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
                     current_piece(piece[++cur_piece]);
@@ -25,7 +25,7 @@ function current_piece(id){
                 }
                 else{
                     dropable = 0; 
-                    board.gravity = board.delay;
+                    board.current_gravity = board.delay;
                 }
             }
         }

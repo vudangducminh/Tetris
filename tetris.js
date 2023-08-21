@@ -4,6 +4,7 @@ var board = {
     row: 20,
     col: 10,
     gravity: 500,
+    current_gravity: 500,
     reset: 50,
     num_bag: 1000,
     delay: 2000
@@ -29,11 +30,11 @@ function time_elapsed(){
     osu = setInterval(function() {
         cur_time = Date.now();
         // console.log(cur_time);
-    }, board.gravity);
+    }, board.reset);
 }
 
 function reset_all(){
-    clearInterval(osu); clearInterval(lap); moveable = false; end_game = 0; cur_piece = 0; dropable = 1; board.gravity = 500;
+    clearInterval(osu); clearInterval(lap); moveable = false; end_game = 0; cur_piece = 0; dropable = 1; board.current_gravity = board.gravity;
     piece = [];
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);
