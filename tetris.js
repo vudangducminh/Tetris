@@ -11,7 +11,7 @@ var board = {
 
 
 
-var cur_time, end_game, start_time;
+var cur_time, end_game, start_time, dropable;
 // 0 -> blank
 // 1 -> I (light blue)
 // 2 -> L (blue)
@@ -33,7 +33,7 @@ function time_elapsed(){
 }
 
 function reset_all(){
-    clearInterval(osu); moveable = false; end_game = 0; cur_piece = 0; board.gravity = 1000;
+    clearInterval(osu); moveable = false; end_game = 0; cur_piece = 0; dropable = 1; board.gravity = 1000;
     piece = [];
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);
@@ -87,19 +87,21 @@ function current_piece(id){
     add(index, r, c); update_color();
     if(index == 1) r = 1, c = 5;
     else r = 2, c = 5;
-    var dropable = 0;
-    var lap = setInterval(function(){
-        if(dropable == 1){
-            board.gravity /= 3; 
-            fill();
-            if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
-            current_piece(piece[++cur_piece]);
-            clearInterval(lap);
-        }
-        if(dropping() == true);
+    dropable = 1;
+    var lap = setInterval(function(){    
+        if(dropping() == true) dropable = 1, board.gravity = 1000;
         else{
-            dropable = 1; 
-            board.gravity *= 3;
+            if(dropable == 0){
+                board.gravity = 1000; 
+                fill();
+                if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
+                current_piece(piece[++cur_piece]);
+                clearInterval(lap);
+            }
+            else{
+                dropable = 0; 
+                board.gravity = board.delay;
+            }
         }
     }, board.gravity);
 }
