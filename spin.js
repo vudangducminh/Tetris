@@ -160,7 +160,42 @@ function clockwise(){
         }
     }
     if(index == 7){
-        
+        if(degree == 90){
+            if(check_segment(r - 1, c, r + 1, c) && check_segment(r, c + 1, r, c + 1)){
+                erase();
+                fill_segment(r - 1, c, r + 1, c, 14);
+                fill_segment(r, c + 1, r, c + 1, 14);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 180){
+            if(check_segment(r, c - 1, r, c + 1) && check_segment(r + 1, c, r + 1, c)){
+                erase();
+                fill_segment(r, c - 1, r, c + 1, 14);
+                fill_segment(r + 1, c, r + 1, c, 14);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 270){
+            if(check_segment(r - 1, c, r + 1, c) && check_segment(r, c - 1, r, c - 1)){
+                erase();
+                fill_segment(r - 1, c, r + 1, c, 14);
+                fill_segment(r, c - 1, r, c - 1, 14);
+                update_color(); degree = 0;
+            }
+            else return false;
+        }
+        else{
+            if(check_segment(r, c - 1, r, c + 1) && check_segment(r - 1, c, r - 1, c)){
+                erase();
+                fill_segment(r, c - 1, r, c + 1, 14);
+                fill_segment(r - 1, c, r - 1, c, 14);
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
     }
     return true;
 }
