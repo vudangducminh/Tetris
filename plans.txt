@@ -1,3 +1,4 @@
+- fix movement bugs
 - add multi key press
 - add score
 - bug new game

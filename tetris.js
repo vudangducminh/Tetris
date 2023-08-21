@@ -47,7 +47,12 @@ function rng(l, r){
 function hash(i, j){
     return (i - 1) * board.col + j;
 }
-
+function min(i, j){
+    return i > j ? j : i;
+}
+function max(i, j){
+    return i < j ? j : i;
+}
 function ok(a){
     // console.log(a);
     if(a && a < 8) return true;

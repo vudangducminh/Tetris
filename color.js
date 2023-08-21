@@ -23,8 +23,8 @@ function update_color(){
 }
 
 function erase(){
-    for(var i = 1; i <= board.row; i++){
-        for(var j = 1; j <= board.col; j++){
+    for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
+        for(var j = max(1, c - 2); j <= min(board.col, c + 2); j++){
             if(state[i][j] >= 8) state[i][j] = 0;
         }
     }
@@ -80,8 +80,8 @@ function add(index, r, c){
 }
 
 function fill(){
-    for(var i = 1; i <= board.row; i++){
-        for(var j = 1; j <= board.col; j++){
+    for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
+        for(var j = max(1, c - 2); j <= min(board.col, c + 2); j++){
             if(state[i][j] >= 8) state[i][j] -= 7;
         }
     }
