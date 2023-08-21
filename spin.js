@@ -197,5 +197,43 @@ function clockwise(){
             else return false;
         }
     }
+    if(index == 1){
+        if(degree == 90){
+            if(check_segment(r - 1, c, r + 2, c)){
+                erase();
+                fill_segment(r - 1, c, r + 2, c, 8);
+                r++;
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 180){
+            if(check_segment(r, c - 1, r, c + 2)){
+                erase();
+                fill_segment(r, c - 1, r, c + 2, 8);
+                c++;
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+        else if(degree == 270){
+            if(check_segment(r - 2, c, r + 1, c)){
+                erase();
+                fill_segment(r - 2, c, r + 1, c, 8);
+                r--;
+                update_color(); degree = 0;
+            }
+            else return false;
+        }
+        else{
+            if(check_segment(r, c - 2, r, c + 1)){
+                erase();
+                fill_segment(r, c - 2, r, c + 1, 8);
+                c--;
+                update_color(); degree += 90;
+            }
+            else return false;
+        }
+    }
     return true;
 }
