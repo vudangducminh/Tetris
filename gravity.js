@@ -20,9 +20,9 @@ function current_piece(id){
                 update_color();
             }
             else{
-                console.log("FAKE STOP: ", r, c);
+                // console.log("FAKE STOP: ", r, c);
                 if(dropable == false){ 
-                    console.log("REAL STOP: ", r, c);
+                    // console.log("REAL STOP: ", r, c);
                     fill();
                     board.current_gravity = board.gravity;  
                     if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);

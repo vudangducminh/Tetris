@@ -28,7 +28,7 @@ function dropping(){
 }
 
 function move_left(){
-    console.log("LEFT: ", r, c);
+    // console.log("LEFT: ", r, c);
     if(moveable == false) return;
     for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
         for(var j = max(1, c - 2); j <= min(board.col, c + 2); j++){
@@ -52,7 +52,7 @@ function move_left(){
 }
 
 function move_right(){
-    console.log("RIGHT: ", r, c);
+    // console.log("RIGHT: ", r, c);
     if(moveable == false) return;
     for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
         for(var j = min(board.col, c + 2); j >= max(1, c - 2); j--){
