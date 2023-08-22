@@ -45,6 +45,7 @@ priority_I[5] = [[0, 0], [0, 1], [0, -2], [-2, 1], [1, -2]]; // 0 -> 3
 priority_I[6] = [[0, 0], [0, 2], [0, -1], [-2, -1], [1, 2]];  // 1 -> 0
 priority_I[7] = [[0, 0], [0, 2], [0, -1], [-1, 2], [2, -1]]; // 2 -> 1
 priority_I[8] = [[0, 0], [0, -2], [0, 1], [-1, -2], [1, 1]]; // 3 -> 2
+
 let piece = [];
 let state = new Array(board.row + 1);
 var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0;
@@ -58,7 +59,7 @@ function time_elapsed(){
 
 function reset_all(){
     clearInterval(osu); clearInterval(lap); moveable = false; end_game = 0; cur_piece = 0; dropable = 1; board.current_gravity = board.gravity;
-    piece = []; priority = [];
+    piece = []; 
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);
     }

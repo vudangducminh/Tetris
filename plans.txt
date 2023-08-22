@@ -1,5 +1,6 @@
 - need to redevelop spin cw & ccw (done)
 - add SRS (done)
+- bug tst (debugged)
 
 - fix gravity bugs
 - add multi key press

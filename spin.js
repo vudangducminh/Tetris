@@ -402,7 +402,7 @@ function is_ccw_rotateable(id, deg){
             }
             else return false;
         }
-        else if(deg == 3){
+        else if(deg == 1){
             if(check_segment(r - 1, c, r + 1, c) && check_segment(r, c - 1, r, c - 1)){
                 erase();
                 fill_segment(r - 1, c, r + 1, c, 14);

@@ -8,12 +8,18 @@ function dropping(){
                 if(i + 1 <= board.row && !ok(state[i + 1][j])) continue;
                 else{    
                     if(dropable == false) movement = false; 
+                    else movement = true;
+                    board.current_gravity = board.delay;
                     return false;
                 }
             }
         }
     }
-    if(!flag) return false;
+    if(!flag){
+        movement = true;
+        board.current_gravity = board.delay;
+        return false;
+    }
     for(var i = min(board.row, r + 2); i >= max(1, r - 2); i--){
         for(var j = max(1, c - 2); j <= min(board.col, c + 2); j++){
             if(state[i][j] >= 8){
