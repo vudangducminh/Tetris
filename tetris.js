@@ -22,9 +22,32 @@ var cur_time, end_game, start_time, dropable, lap, num_lap;
 // 6 -> Z (green)
 // 7 -> T (purple)
 
+let priority_other = new Array(9), priority_I = new Array(9);
+for(var i = 1; i <= 8; i++){    
+    priority_other[i] = new Array(5).fill([0, 0]);
+    priority_I[i] = new Array(5).fill([0, 0]);
+}
+// cw
+priority_other[1] = [[0, 0], [0, -1], [1, -1], [-2, 0], [-2, -1]]; // 0 -> 1
+priority_other[2] = [[0, 0], [0, -1], [-1, -1], [2, 0], [2, -1]];  // 1 -> 2
+priority_other[3] = [[0, 0], [0, 1], [1, 1], [-2, 0], [-2, 1]]; // 2 -> 3
+priority_other[4] = [[0, 0], [0, 1], [-1, 1], [2, 0], [2, 1]]; // 3 -> 0
+priority_I[1] = [[0, 0], [0, -2], [0, 1], [-1, -2], [2, 1]]; // 0 -> 1
+priority_I[2] = [[0, 0], [0, -2], [0, 1], [-2, 1], [1, -2]];  // 1 -> 2
+priority_I[3] = [[0, 0], [0, -1], [0, 2], [-2, -1], [1, 2]]; // 2 -> 3
+priority_I[4] = [[0, 0], [0, 2], [0, -1], [-1, 2], [1, -1]]; // 3 -> 0
+// ccw
+priority_other[5] = [[0, 0], [0, -1], [1, -1], [-2, 0], [-2, -1]]; // 0 -> 3
+priority_other[6] = [[0, 0], [0, 1], [-1, 1], [2, 0], [2, 1]]; // 1 -> 0
+priority_other[7] = [[0, 0], [0, 1], [1, 1], [-2, 0], [-2, 1]]; // 2 -> 1
+priority_other[8] = [[0, 0], [0, -1], [-1, -1], [2, 0], [2, -1]]; // 3 -> 2
+priority_I[5] = [[0, 0], [0, 1], [0, -2], [-2, 1], [1, -2]]; // 0 -> 3
+priority_I[6] = [[0, 0], [0, 2], [0, -1], [-2, -1], [1, 2]];  // 1 -> 0
+priority_I[7] = [[0, 0], [0, 2], [0, -1], [-1, 2], [2, -1]]; // 2 -> 1
+priority_I[8] = [[0, 0], [0, -2], [0, 1], [-1, -2], [1, 1]]; // 3 -> 2
 let piece = [];
 let state = new Array(board.row + 1);
-var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 90, num_lap = 0;
+var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0;
 
 function time_elapsed(){
     osu = setInterval(function() {
@@ -35,7 +58,7 @@ function time_elapsed(){
 
 function reset_all(){
     clearInterval(osu); clearInterval(lap); moveable = false; end_game = 0; cur_piece = 0; dropable = 1; board.current_gravity = board.gravity;
-    piece = [];
+    piece = []; priority = [];
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);
     }

@@ -75,14 +75,15 @@ function move_right(){
 }
 
 function soft_drop(type){
-    if(moveable == false) return;
     if(type == 1) movement = false, dropable = false;
-    while(dropping() == true) update_color();
+    while(dropping() == true);
+    update_color();
     if(type == 1) fill();
 }
 
 function hard_drop(){
     if(moveable == false) return;
+    moveable = false;
     soft_drop(1); board.current_gravity = board.gravity;
 }
 

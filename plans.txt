@@ -1,11 +1,12 @@
-- fix movement bugs
+- need to redevelop spin cw & ccw (done)
+- add SRS (done)
+
+- fix gravity bugs
 - add multi key press
 - add score
 - bug new game
 - need hold & 180 spin
-- need to redevelop spin cw & ccw
 - add queue
 - add number of used pieces & cleared lines
 - add gravity increase based on time elapsed
 - add tsd, tst, b2b 
-- add DAS

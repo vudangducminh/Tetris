@@ -1,5 +1,5 @@
 function current_piece(id){
-    moveable = true; degree = 90;
+    moveable = true; degree = 1;
     r = 1, c = 4, index = id;
     if(check(index, r, c) == false){
         moveable = false;
@@ -35,5 +35,6 @@ function current_piece(id){
                 }
             }
         }
+        update_color();
     }, board.reset);
 }

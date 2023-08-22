@@ -17,7 +17,7 @@ function create_board(){
 }
 
 function shuffle(array){
-    var size = array.length
+    var size = array.length;
     for(var i = 0; i < size - 1; i++){
         var id = rng(i + 1, size - 1);
         var tmp = array[i];
