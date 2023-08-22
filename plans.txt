@@ -3,11 +3,12 @@
 - bug tst (debugged)
 - add multi key press (done)
 - add score (done)
+- fix gravity bugs (done)
+- add 180 spin (done)
 
 - bug new game (gravity speed increase when click new game)
 - add shadowed piece
-- fix gravity bugs
-- need hold & 180 spin
+- need hold
 - add queue
 - add number of used pieces & cleared lines
 - add gravity increase based on time elapsed
