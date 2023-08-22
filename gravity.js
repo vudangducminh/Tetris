@@ -6,7 +6,7 @@ function current_piece(id){
         game_over(); return;
     }
     add(index, r, c); update_color();
-    if(index == 1) r = 2, c = 5; // r = 1, c = 5 soon
+    if(index == 1) r = 1, c = 5;
     else r = 2, c = 5;
     dropable = true;
     num_lap = 0;
