@@ -95,14 +95,15 @@ function move_right(){
 
 function soft_drop(type){
     if(type == 1) movement = false, dropable = false;
-    while(dropping(1) == true);
-    update_color();
+    while(dropping(1) == true) cur_score++;
+    update_score(); update_color();
     if(type == 1) fill();
 }
 
 function hard_drop(){
     if(moveable == false) return;
     moveable = dropable = false;
-    soft_drop(1); board.current_gravity = board.gravity;
+    soft_drop(1); update_score();
+    board.current_gravity = board.gravity;
 }
 

@@ -12,6 +12,7 @@ function clear_lines(){
             for(var j = 1; j <= board.col; j++) state[i][j] = 0;
         }
     }
+    cur_score += add_score(num_lines);
     for(var i = min(board.row, r + 2); i >= 1; i--){
         var flag = 0;
         for(var j = 1; j <= board.col; j++){
@@ -34,4 +35,5 @@ function clear_lines(){
             break;
         }
     }
+    update_score();
 }
