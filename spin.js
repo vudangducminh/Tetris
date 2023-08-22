@@ -501,3 +501,8 @@ function clockwise(){
     }
     return false;
 }
+function rotate_180(){
+    degree++;
+    if(degree == 4) degree = 0;
+    clockwise();
+}

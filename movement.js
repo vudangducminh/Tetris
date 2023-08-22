@@ -11,9 +11,7 @@ function dropping(type){
                         if(dropable == false) movement = false; 
                         else movement = true;
                         dropable = false; 
-                        board.current_gravity = board.delay;
                     }
-                    else board.current_gravity = board.slight_delay;
                     return false;
                 }
             }
@@ -22,9 +20,7 @@ function dropping(type){
     if(!flag){
         if(type == 0){
             movement = true; dropable = false; 
-            board.current_gravity = board.delay;
         }
-        else board.current_gravity = board.slight_delay;
         return false;
     }
     for(var i = min(board.row, r + 2); i >= max(1, r - 2); i--){
@@ -61,7 +57,7 @@ function move_left(){
     }
     c--;
     if(dropable == false){
-        if(dropping(1) == true) r--, dropable = true;
+        if(dropping(1) == true) r--, movement = dropable = true;
     }
     update_color();
 
@@ -88,7 +84,7 @@ function move_right(){
     }
     c++;
     if(dropable == false){
-        if(dropping(1) == true) r--, dropable = true;
+        if(dropping(1) == true) r--, movement = dropable = true;
     }
     update_color();
 }
@@ -96,6 +92,7 @@ function move_right(){
 function soft_drop(type){
     if(type == 1) movement = false, dropable = false;
     while(dropping(1) == true) cur_score++;
+    board.current_gravity = board.delay;
     update_score(); update_color();
     if(type == 1) fill();
 }
