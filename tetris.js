@@ -7,7 +7,8 @@ var board = {
     current_gravity: 500,
     reset: 50,
     num_bag: 1000,
-    delay: 3000
+    delay: 3000,
+    slight_delay: 2000, // 1500 soon
 };
 
 

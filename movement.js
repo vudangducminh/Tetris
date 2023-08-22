@@ -1,4 +1,4 @@
-function dropping(){
+function dropping(type){
     var flag = 0;
     for(var i = min(board.row, r + 2); i >= max(1, r - 2); i--){
         for(var j = max(1, c - 2); j <= min(board.col, c + 2); j++){
@@ -6,18 +6,25 @@ function dropping(){
                 flag = 1;
                 // console.log(i, j);
                 if(i + 1 <= board.row && !ok(state[i + 1][j])) continue;
-                else{    
-                    if(dropable == false) movement = false; 
-                    else movement = true;
-                    board.current_gravity = board.delay;
+                else{ 
+                    if(type == 0){   
+                        if(dropable == false) movement = false; 
+                        else movement = true;
+                        dropable = false; 
+                        board.current_gravity = board.delay;
+                    }
+                    else board.current_gravity = board.slight_delay;
                     return false;
                 }
             }
         }
     }
     if(!flag){
-        movement = true;
-        board.current_gravity = board.delay;
+        if(type == 0){
+            movement = true; dropable = false; 
+            board.current_gravity = board.delay;
+        }
+        else board.current_gravity = board.slight_delay;
         return false;
     }
     for(var i = min(board.row, r + 2); i >= max(1, r - 2); i--){
@@ -53,6 +60,9 @@ function move_left(){
         }
     }
     c--;
+    if(dropable == false){
+        if(dropping(1) == true) r--, dropable = true;
+    }
     update_color();
 
 }
@@ -77,19 +87,22 @@ function move_right(){
         }
     }
     c++;
+    if(dropable == false){
+        if(dropping(1) == true) r--, dropable = true;
+    }
     update_color();
 }
 
 function soft_drop(type){
     if(type == 1) movement = false, dropable = false;
-    while(dropping() == true);
+    while(dropping(1) == true);
     update_color();
     if(type == 1) fill();
 }
 
 function hard_drop(){
     if(moveable == false) return;
-    moveable = false;
+    moveable = dropable = false;
     soft_drop(1); board.current_gravity = board.gravity;
 }
 

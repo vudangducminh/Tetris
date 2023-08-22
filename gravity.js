@@ -14,7 +14,7 @@ function current_piece(id){
         num_lap++;
         // console.log(num_lap);
         if(num_lap % (board.current_gravity / board.reset) == 0){
-            if(dropping() == true){
+            if(dropping(0) == true){
                 moveable = dropable = true, board.current_gravity = board.gravity;
                 update_color();
             }
