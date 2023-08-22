@@ -48,6 +48,7 @@ priority_I[8] = [[0, 0], [0, -2], [0, 1], [-1, -2], [1, 1]]; // 3 -> 2
 
 let piece = [];
 let state = new Array(board.row + 1);
+var pressed = {};
 var moveable = false, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0;
 
 function time_elapsed(){

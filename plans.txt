@@ -1,9 +1,9 @@
 - need to redevelop spin cw & ccw (done)
 - add SRS (done)
 - bug tst (debugged)
+- add multi key press (done)
 
 - fix gravity bugs
-- add multi key press
 - add score
 - bug new game
 - need hold & 180 spin
