@@ -2,11 +2,11 @@
 - add SRS (done)
 - bug tst (debugged)
 - add multi key press (done)
-- bug new game (done)
+- add score (done)
 
+- bug new game (gravity speed increase when click new game)
 - add shadowed piece
 - fix gravity bugs
-- add score
 - need hold & 180 spin
 - add queue
 - add number of used pieces & cleared lines
