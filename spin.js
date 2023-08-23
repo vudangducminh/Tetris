@@ -463,6 +463,7 @@ function is_ccw_rotateable(id, deg){
 }
 function counterclockwise(){
     if(moveable == false) return;
+    num_lap = 2;
     for(var i = 0; i <= 4; i++){
         if(index != 1){
             r += priority_other[degree + 5][i][0];
@@ -483,6 +484,7 @@ function counterclockwise(){
 }
 function clockwise(){
     if(moveable == false) return false;
+    num_lap = 2;
     for(var i = 0; i <= 4; i++){
         if(index != 1){
             r += priority_other[degree + 1][i][0];
@@ -502,6 +504,8 @@ function clockwise(){
     return false;
 }
 function rotate_180(){
+    if(moveable == false) return false;
+    num_lap = 2;
     degree++;
     if(degree == 4) degree = 0;
     clockwise();

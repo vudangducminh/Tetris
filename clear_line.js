@@ -13,6 +13,7 @@ function clear_lines(){
         }
     }
     cur_score += add_score(num_lines);
+    is_pc -= num_lines * 10;
     for(var i = min(board.row, r + 2); i >= 1; i--){
         var flag = 0;
         for(var j = 1; j <= board.col; j++){
