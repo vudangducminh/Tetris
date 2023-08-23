@@ -92,7 +92,7 @@ function move_right(){
 function soft_drop(type){
     if(type == 1) movement = false, dropable = false;
     while(dropping(1) == true) cur_score++;
-    board.current_gravity = board.delay;
+    board.current_gravity = board.slight_delay;
     update_score(); update_color();
     if(type == 1) fill();
 }

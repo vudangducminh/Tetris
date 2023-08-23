@@ -11,7 +11,7 @@ document.onkeydown = (e) => {
         flag = false;
         if(pressed[188]) move_left();
         if(pressed[191]) move_right();              
-        if(pressed[190] == 1 && dropable == true) pressed[190] = 2, soft_drop(0); 
+        if(pressed[190] == 1 && dropable == true) soft_drop(0); 
         if(pressed[65] == 1){
             pressed[65] = 2;
             rotate_180();

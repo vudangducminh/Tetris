@@ -25,12 +25,15 @@ function current_piece(id){
                 if(dropable == false){ 
                     // console.log("REAL STOP: ", r, c);
                     if(!crr) crr = 1, board.gravity = board.slight_delay;
-                    else moveable = false;
-                    fill();
-                    board.current_gravity = board.gravity;  num_lap = -1;
-                    if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
-                    current_piece(piece[++cur_piece]);
-                    clearInterval(lap);
+                    else{
+                        moveable = false; 
+                        if(pressed[190]) pressed[190] = 2;
+                        fill();
+                        board.current_gravity = board.gravity; num_lap = -1;
+                        if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
+                        current_piece(piece[++cur_piece]);
+                        clearInterval(lap);
+                    }
                 }
                 else{
                     moveable = true; dropable = false; crr = 0;
