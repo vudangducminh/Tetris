@@ -101,6 +101,7 @@ function hard_drop(){
     if(moveable == false) return;
     moveable = dropable = false;
     soft_drop(1); update_score();
+    crr = 1;
     board.current_gravity = board.gravity;
 }
 
