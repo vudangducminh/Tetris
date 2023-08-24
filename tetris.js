@@ -47,6 +47,7 @@ priority_I[8] = [[0, 0], [0, -2], [0, 1], [-1, -2], [1, 1]]; // 3 -> 2
 
 let piece = [];
 let state = new Array(board.row + 1);
+let shadow_state = new Array(board.row + 1);
 var pressed = {};
 var moveable = false, crr, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0;
 
@@ -64,6 +65,7 @@ function reset_all(){
     piece = [];  
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);
+        shadow_state[i] = new Array(board.col + 1).fill(0);
     }
 }
 function rng(l, r){

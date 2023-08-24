@@ -468,14 +468,22 @@ function counterclockwise(){
         if(index != 1){
             r += priority_other[degree + 5][i][0];
             c += priority_other[degree + 5][i][1];
-            if(is_ccw_rotateable(index, degree)) return true;
+            if(is_ccw_rotateable(index, degree)){
+                begin_state();
+                shadow_piece();
+                return true;
+            }
             r -= priority_other[degree + 5][i][0];
             c -= priority_other[degree + 5][i][1];
         }
         else{
             r += priority_I[degree + 5][i][0];
             c += priority_I[degree + 5][i][1];
-            if(is_ccw_rotateable(index, degree)) return true;
+            if(is_ccw_rotateable(index, degree)){
+                begin_state();
+                shadow_piece();
+                return true;
+            }
             r -= priority_I[degree + 5][i][0];
             c -= priority_I[degree + 5][i][1];
         }
@@ -489,14 +497,22 @@ function clockwise(){
         if(index != 1){
             r += priority_other[degree + 1][i][0];
             c += priority_other[degree + 1][i][1];
-            if(is_cw_rotateable(index, degree)) return true;
+            if(is_cw_rotateable(index, degree)){  
+                begin_state();
+                shadow_piece();
+                return true;
+            }
             r -= priority_other[degree + 1][i][0];
             c -= priority_other[degree + 1][i][1];
         }
         else{
             r += priority_I[degree + 1][i][0];
             c += priority_I[degree + 1][i][1];
-            if(is_cw_rotateable(index, degree)) return true;
+            if(is_cw_rotateable(index, degree)){
+                begin_state();
+                shadow_piece();
+                return true;
+            }
             r -= priority_I[degree + 1][i][0];
             c -= priority_I[degree + 1][i][1];
         }
@@ -508,5 +524,8 @@ function rotate_180(){
     num_lap = 2;
     degree++;
     if(degree == 4) degree = 0;
-    clockwise();
+    if(clockwise() == false){
+        degree--;
+        if(degree == -1) degree = 3;
+    }
 }

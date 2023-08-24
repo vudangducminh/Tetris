@@ -1,11 +1,8 @@
 function clear(){
     pressed[32] = pressed[65] = pressed[88] = pressed[90] = pressed[188] = pressed[190] = pressed[191] = 0;
 }
-document.onkeydown = (e) => {
-    e = e || window.event;
-    if(moveable == false) return;
-    if(!pressed[e.keyCode]) pressed[e.keyCode] = 1;
-    // console.log(e.keyCode);
+
+function check_multiple_keys(){
     var flag = true;
     while(flag == true){
         flag = false;
@@ -32,8 +29,17 @@ document.onkeydown = (e) => {
         }
     }
 }
+
+document.onkeydown = (e) => {
+    e = e || window.event;
+    if(moveable == false) return;
+    if(!pressed[e.keyCode]) pressed[e.keyCode] = 1;
+    // console.log(e.keyCode);
+    check_multiple_keys();
+}
 document.onkeyup = (e) => {
     e = e || window.event;
     // console.log(e.key);
     pressed[e.keyCode] = 0;
+    check_multiple_keys();
 }

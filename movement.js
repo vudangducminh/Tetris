@@ -60,8 +60,9 @@ function move_left(){
     if(dropable == false){
         if(dropping(1) == true) r--, movement = dropable = true;
     }
+    begin_state();
+    shadow_piece();
     update_color();
-
 }
 
 function move_right(){
@@ -88,6 +89,8 @@ function move_right(){
     if(dropable == false){
         if(dropping(1) == true) r--, movement = dropable = true;
     }
+    begin_state();
+    shadow_piece();
     update_color();
 }
 

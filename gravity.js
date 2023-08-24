@@ -10,9 +10,10 @@ function current_piece(id){
         moveable = false;
         game_over(); return;
     }
-    add(index, r, c); update_color();
+    add(index, r, c); 
     if(index == 1) r = 2, c = 5;
     else r = 2, c = 5;
+    update_color();
     dropable = true;
     num_lap = 0;
     crr = 0;
@@ -20,6 +21,8 @@ function current_piece(id){
         num_lap++;
         // console.log(num_lap);
         if(num_lap % (board.gravity / board.reset) == 1){
+            // console.log("BEGIN ", r, c);
+            begin_state(); shadow_piece();
             moveable = false;
             if(dropping(0) == true){
                 moveable = dropable = true;
@@ -32,7 +35,7 @@ function current_piece(id){
                     if(!crr) crr = 1, num_lap = 2;
                     else{
                         moveable = false; 
-                        fill();
+                        fill(); begin_state();
                         if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
                         is_pc += 4;
                         num_lap = -1;

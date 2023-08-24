@@ -3,7 +3,9 @@ function update_color(){
     for(var i = 1; i <= board.row; i++){
         for(var j = 1; j <= board.col; j++){
             let cell = document.getElementById(hash(i, j));
-            if(state[i][j] == 0) cell.style.backgroundColor = "black";
+            if(state[i][j] == 0){
+                if(!shadow_state[i][j]) cell.style.backgroundColor = "black";
+            }
             if(state[i][j] == 1) cell.style.backgroundColor = "lightblue";
             if(state[i][j] == 2) cell.style.backgroundColor = "blue";
             if(state[i][j] == 3) cell.style.backgroundColor = "orange";
