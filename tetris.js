@@ -3,8 +3,8 @@ const score = document.getElementById("ScoreTetris");
 var board = {
     row: 20,
     col: 10,
-    gravity: 1000,
-    reset: 25,
+    gravity: 750,
+    reset: 30,
     num_bag: 1000,
     pc_score: 1000,
 };
