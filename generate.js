@@ -40,5 +40,5 @@ function create_bag(){
         for(var j = 0; j < 7; j++) piece.push(bag[j]);
     }
     moveable = true;
-    current_piece(piece[cur_piece]);
+    current_piece(cur_piece);
 }

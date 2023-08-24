@@ -3,9 +3,9 @@ function current_piece(id){
     if(cur_piece > 0 && is_pc == 0){
         cur_score += board.pc_score; update_score();
     }
-    // console.log(cur_piece, is_pc);
+    console.log(id);
     moveable = true; degree = 1;
-    r = 1, c = 4, index = id;
+    r = 1, c = 4, index = piece[id];
     if(check(index, r, c) == false){
         moveable = false;
         game_over(); return;
@@ -39,7 +39,7 @@ function current_piece(id){
                         if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
                         is_pc += 4;
                         num_lap = -1;
-                        current_piece(piece[++cur_piece]);
+                        current_piece(++cur_piece);
                         clearInterval(lap);
                     }
                 }

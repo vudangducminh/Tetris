@@ -41,5 +41,5 @@ document.onkeyup = (e) => {
     e = e || window.event;
     // console.log(e.key);
     pressed[e.keyCode] = 0;
-    check_multiple_keys();
+    // check_multiple_keys();
 }
