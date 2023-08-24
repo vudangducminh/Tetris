@@ -4,7 +4,7 @@ var board = {
     row: 20,
     col: 10,
     gravity: 1000,
-    reset: 20,
+    reset: 25,
     num_bag: 1000,
     pc_score: 1000,
 };
