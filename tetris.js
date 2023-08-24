@@ -60,7 +60,7 @@ function time_elapsed(){
 
 function reset_all(){
     clearInterval(osu); clearInterval(lap); 
-    board.gravity = 1000;
+    board.gravity = 750;
     moveable = false; end_game = false; dropable = true;  
     cur_piece = 0; cur_score = 0; is_pc = 0;
     hold = -1; holdable = false;
