@@ -1,5 +1,5 @@
 function clear(){
-    pressed[32] = pressed[65] = pressed[67] = pressed[88] = pressed[90] = pressed[188] = pressed[190] = pressed[191] = 0;
+    pressed[32] = pressed[65] = pressed[67] = pressed[82] = pressed[88] = pressed[90] = pressed[188] = pressed[190] = pressed[191] = 0;
 }
 
 function check_multiple_keys(){
@@ -32,6 +32,7 @@ function check_multiple_keys(){
                 }
             }
         }
+        if(pressed[82]) init();
         if(pressed[88] == 1){
             pressed[88] = 2; 
             var x = clockwise();
