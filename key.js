@@ -1,5 +1,5 @@
 function clear(){
-    pressed[32] = pressed[65] = pressed[88] = pressed[90] = pressed[188] = pressed[190] = pressed[191] = 0;
+    pressed[32] = pressed[65] = pressed[67] = pressed[88] = pressed[90] = pressed[188] = pressed[190] = pressed[191] = 0;
 }
 
 function check_multiple_keys(){
@@ -12,6 +12,25 @@ function check_multiple_keys(){
         if(pressed[65] == 1){
             pressed[65] = 2;
             rotate_180();
+        }
+        if(pressed[67] == 1){
+            pressed[67] = 2; 
+            if(hold == -1){
+                hold = cur_piece;
+                holdable = true;
+                erase(); clearInterval(lap);
+                if(cur_piece + 1 > 0 && is_pc == 0) cur_score -= board.pc_score;
+                current_piece(++cur_piece);
+            }
+            else{
+                if(!holdable){
+                    holdable = true;
+                    erase(); clearInterval(lap);
+                    if(hold > 0 && is_pc == 0) cur_score -= board.pc_score;
+                    current_piece(hold);
+                    hold = cur_piece;
+                }
+            }
         }
         if(pressed[88] == 1){
             pressed[88] = 2; 
@@ -40,6 +59,6 @@ document.onkeydown = (e) => {
 document.onkeyup = (e) => {
     e = e || window.event;
     // console.log(e.key);
-    pressed[e.keyCode] = 0;
+    if(e.keyCode != 67) pressed[e.keyCode] = 0;
     // check_multiple_keys();
 }

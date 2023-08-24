@@ -49,7 +49,7 @@ let piece = [];
 let state = new Array(board.row + 1);
 let shadow_state = new Array(board.row + 1);
 var pressed = {};
-var moveable = false, crr, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0;
+var moveable = false, crr, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0, hold = -1, holdable = false;
 
 function time_elapsed(){
     osu = setInterval(function() {
@@ -62,6 +62,7 @@ function reset_all(){
     clearInterval(osu); clearInterval(lap); 
     moveable = false; end_game = false;dropable = true;  
     cur_piece = 0; cur_score = 0; is_pc = 0;
+    hold = -1; holdable = false;
     piece = [];  
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);

@@ -5,10 +5,10 @@
 - add score (done)
 - fix gravity bugs (done)
 - add 180 spin (done)
+- add shadowed piece (done)
+- need hold (partly done)
+- bug new game (gravity speed increase when click new game) (done)
 
-- bug new game (gravity speed increase when click new game)
-- add shadowed piece
-- need hold
 - add queue
 - add number of used pieces & cleared lines
 - add gravity increase based on time elapsed

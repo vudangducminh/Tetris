@@ -1,9 +1,11 @@
 function current_piece(id){
+    if(cur_piece + 1 == board.num_bag * 7) return;
+    pressed[67] = 0;
     if(pressed[190]) pressed[190] = 2;
     if(cur_piece > 0 && is_pc == 0){
         cur_score += board.pc_score; update_score();
     }
-    console.log(id);
+    // console.log(id);
     moveable = true; degree = 1;
     r = 1, c = 4, index = piece[id];
     if(check(index, r, c) == false){
@@ -19,7 +21,6 @@ function current_piece(id){
     crr = 0;
     lap = setInterval(function(){ 
         num_lap++;
-        // console.log(num_lap);
         if(num_lap % (board.gravity / board.reset) == 1){
             // console.log("BEGIN ", r, c);
             begin_state(); shadow_piece();
@@ -36,11 +37,11 @@ function current_piece(id){
                     else{
                         moveable = false; 
                         fill(); begin_state();
-                        if(cur_piece + 1 == board.num_bag * 7) clearInterval(lap);
                         is_pc += 4;
                         num_lap = -1;
-                        current_piece(++cur_piece);
+                        holdable = false;
                         clearInterval(lap);
+                        current_piece(++cur_piece);
                     }
                 }
                 else{
