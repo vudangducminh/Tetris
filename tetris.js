@@ -3,8 +3,8 @@ const score = document.getElementById("ScoreTetris");
 var board = {
     row: 20,
     col: 10,
-    gravity: 750,
-    reset: 30,
+    gravity: 1000,
+    reset: 20,
     num_bag: 1000,
     pc_score: 1000,
 };
@@ -60,7 +60,8 @@ function time_elapsed(){
 
 function reset_all(){
     clearInterval(osu); clearInterval(lap); 
-    moveable = false; end_game = false;dropable = true;  
+    board.gravity = 1000;
+    moveable = false; end_game = false; dropable = true;  
     cur_piece = 0; cur_score = 0; is_pc = 0;
     hold = -1; holdable = false;
     piece = [];  
