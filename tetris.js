@@ -1,8 +1,11 @@
 const gameBoard = document.getElementById('BoardTetris');
+const holdedBoard = document.getElementById('Holded_piece');
 const score = document.getElementById("ScoreTetris");
 var board = {
     row: 20,
     col: 10,
+    hold_row: 4,
+    hold_col: 6,
     gravity: 750,
     reset: 30,
     num_bag: 1000,
@@ -46,6 +49,7 @@ priority_I[7] = [[0, 0], [0, 2], [0, -1], [-1, 2], [2, -1]]; // 2 -> 1
 priority_I[8] = [[0, 0], [0, -2], [0, 1], [-1, -2], [1, 1]]; // 3 -> 2
 
 let piece = [];
+let holding_state = new Array(board.hold_row + 1);
 let state = new Array(board.row + 1);
 let shadow_state = new Array(board.row + 1);
 var pressed = {};
@@ -68,6 +72,9 @@ function reset_all(){
     for(var i = 1; i <= board.row; i++){
         state[i] = new Array(board.col + 1).fill(0);
         shadow_state[i] = new Array(board.col + 1).fill(0);
+    }
+    for(var i = 1; i <= board.hold_row; i++){
+        holding_state[i] = new Array(board.hold_col + 1).fill(0);
     }
 }
 function rng(l, r){

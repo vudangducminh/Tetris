@@ -20,6 +20,7 @@ function check_multiple_keys(){
                 holdable = true;
                 erase(); clearInterval(lap);
                 if(cur_piece + 1 > 0 && is_pc == 0) cur_score -= board.pc_score;
+                add_holding_piece(piece[hold]);
                 current_piece(++cur_piece);
             }
             else{
@@ -27,6 +28,7 @@ function check_multiple_keys(){
                     holdable = true;
                     erase(); clearInterval(lap);
                     if(hold > 0 && is_pc == 0) cur_score -= board.pc_score;
+                    add_holding_piece(piece[cur_piece]);
                     current_piece(hold);
                     hold = cur_piece;
                 }

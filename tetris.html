@@ -10,16 +10,22 @@
         <link rel = "stylesheet" href = "tetris.css" type = "text/css">
     </head>
     <body>
-        <div id = "design">
+            
+        <div class = "button_design">
             <button type = "button" onclick = "init()"> New game! </button>
             <div id = "ScoreTetris"> </div>
         </div>
-        <div id = "BoardTetris"> </div>  
+        <div class = "board_design">
+            <div id = "Holded_piece"> </div>  
+            <div id = "BoardTetris"> </div>  
+        </div>
+        
     </body> 
     <script src="color.js"> </script>
     <script src="clear_line.js"> </script>
     <script src="generate.js"> </script>
     <script src="pieces.js"> </script>
+    <script src="hold.js"> </script>
     <script src="tetris.js"> </script>
     <script src="movement.js"> </script>
     <script src="key.js"> </script>
