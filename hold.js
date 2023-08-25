@@ -1,46 +1,78 @@
 function add_holding_piece(type){
     erase_holding_piece();
     if(type == 1){
-        holding_state[3][2] = type;
-        holding_state[3][3] = type;
-        holding_state[3][4] = type;
-        holding_state[3][5] = type;
+        for(var i = 7; i <= 9; i++){
+            for(var j = 4; j <= 15; j++){
+                holding_state[i][j] = type;
+            }
+        }
     }
     if(type == 2){
-        holding_state[2][2] = type;
-        holding_state[3][2] = type;
-        holding_state[3][3] = type;
-        holding_state[3][4] = type;
+        for(var i = 4; i <= 6; i++){
+            for(var j = 6; j <= 8; j++){
+                holding_state[i][j] = type;
+            }
+        }
+        for(var i = 7; i <= 9; i++){
+            for(var j = 6; j <= 14; j++){
+                holding_state[i][j] = type;
+            }
+        }
     }
     if(type == 3){
-        holding_state[2][4] = type;
-        holding_state[3][2] = type;
-        holding_state[3][3] = type;
-        holding_state[3][4] = type;
+        for(var i = 4; i <= 6; i++){
+            for(var j = 12; j <= 14; j++){
+                holding_state[i][j] = type;
+            }
+        }
+        for(var i = 7; i <= 9; i++){
+            for(var j = 6; j <= 14; j++){
+                holding_state[i][j] = type;
+            }
+        }
     }
     if(type == 4){
-        holding_state[2][3] = type;
-        holding_state[2][4] = type;
-        holding_state[3][3] = type;
-        holding_state[3][4] = type;
+        for(var i = 4; i <= 9; i++){
+            for(var j = 7; j <= 12; j++){
+                holding_state[i][j] = type;
+            }
+        }
     }
     if(type == 5){
-        holding_state[2][2] = type;
-        holding_state[2][3] = type;
-        holding_state[3][3] = type;
-        holding_state[3][4] = type;
+        for(var i = 4; i <= 6; i++){
+            for(var j = 6; j <= 11; j++){
+                holding_state[i][j] = type;
+            }
+        }
+        for(var i = 7; i <= 9; i++){
+            for(var j = 9; j <= 14; j++){
+                holding_state[i][j] = type;
+            }
+        }
     }
     if(type == 6){
-        holding_state[2][3] = type;
-        holding_state[2][4] = type;
-        holding_state[3][2] = type;
-        holding_state[3][3] = type;
+        for(var i = 4; i <= 6; i++){
+            for(var j = 9; j <= 14; j++){
+                holding_state[i][j] = type;
+            }
+        }
+        for(var i = 7; i <= 9; i++){
+            for(var j = 6; j <= 11; j++){
+                holding_state[i][j] = type;
+            }
+        }
     }
     if(type == 7){
-        holding_state[2][3] = type;
-        holding_state[3][2] = type;
-        holding_state[3][3] = type;
-        holding_state[3][4] = type;
+        for(var i = 4; i <= 6; i++){
+            for(var j = 9; j <= 11; j++){
+                holding_state[i][j] = type;
+            }
+        }
+        for(var i = 7; i <= 9; i++){
+            for(var j = 6; j <= 14; j++){
+                holding_state[i][j] = type;
+            }
+        }
     }
     color_holding_piece();
 }

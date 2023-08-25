@@ -34,7 +34,6 @@ function check_multiple_keys(){
                 }
             }
         }
-        if(pressed[82]) init();
         if(pressed[88] == 1){
             pressed[88] = 2; 
             var x = clockwise();
@@ -54,6 +53,7 @@ function check_multiple_keys(){
 
 document.onkeydown = (e) => {
     e = e || window.event;
+    if(pressed[82]) init();
     if(moveable == false) return;
     if(!pressed[e.keyCode]) pressed[e.keyCode] = 1;
     // console.log(e.keyCode);

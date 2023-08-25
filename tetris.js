@@ -4,8 +4,8 @@ const score = document.getElementById("ScoreTetris");
 var board = {
     row: 20,
     col: 10,
-    hold_row: 4,
-    hold_col: 6,
+    hold_row: 12,
+    hold_col: 18,
     gravity: 750,
     reset: 30,
     num_bag: 1000,
@@ -82,7 +82,7 @@ function rng(l, r){
 }
 
 function hash(i, j){
-    return (i - 1) * board.col + j;
+    return (i - 1) * board.row + j;
 }
 function min(i, j){
     return i > j ? j : i;

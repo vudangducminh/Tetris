@@ -15,7 +15,7 @@ function create_board(){
         table.appendChild(row);
     } 
     gameBoard.appendChild(table);
-    var holded_table = document.createElement('table');
+    var holding_table = document.createElement('table');
     for(var i = 1; i <= board.hold_row; i++){
         var row = document.createElement('tr');
         for(var j = 1; j <= board.hold_col; j++){
@@ -24,9 +24,9 @@ function create_board(){
             cell.backgroundColor = "black";
             row.appendChild(cell);
         }
-        holded_table.appendChild(row);
+        holding_table.appendChild(row);
     } 
-    holdedBoard.appendChild(holded_table);
+    holdedBoard.appendChild(holding_table);
 }
 
 function shuffle(array){
