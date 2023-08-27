@@ -9,9 +9,8 @@
 - bug new game (gravity speed increase when click new game) (done)
 - need hold (done)
 - add queue (done)
+- update flexible movement (done)
+- add gravity increase based on time elapsed (done)
 
-
-- update flexible movement 
 - add number of used pieces & cleared lines
-- add gravity increase based on time elapsed
 - add tsd, tst, b2b 
