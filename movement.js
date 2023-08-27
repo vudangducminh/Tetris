@@ -39,7 +39,7 @@ function dropping(type){
 function move_left(){
     // console.log("LEFT: ", r, c);
     if(moveable == false) return;
-    if(dropable == false) num_lap = 2;
+    num_lap = 2;
     for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
         for(var j = max(1, c - 2); j <= min(board.col, c + 2); j++){
             if(state[i][j] >= 8){
@@ -68,7 +68,7 @@ function move_left(){
 function move_right(){
     // console.log("RIGHT: ", r, c);
     if(moveable == false) return;
-    if(dropable == false) num_lap = 2;
+    num_lap = 2;
     for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
         for(var j = min(board.col, c + 2); j >= max(1, c - 2); j--){
             if(state[i][j] >= 8){

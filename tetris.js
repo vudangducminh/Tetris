@@ -13,6 +13,7 @@ var board = {
     reset: 25,
     num_bag: 1000,
     pc_score: 1000,
+    coefficient: 30000,
 };
 
 
@@ -57,17 +58,14 @@ let queue_state = new Array(board.queue_row + 1);
 let state = new Array(board.row + 1);
 let shadow_state = new Array(board.row + 1);
 var pressed = {};
-var moveable = false, crr, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0, hold = -1, holdable = false;
+var moveable = false, tp, crr, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0, num_osu = 0, num_tp = 0, hold = -1, holdable = false;
 
 function time_elapsed(){
-    osu = setInterval(function() {
-        cur_time = Date.now();
-        // console.log(cur_time);
-    }, board.reset);
+    return Date.now() - start_time;
 }
 
 function reset_all(){
-    clearInterval(osu); clearInterval(lap); clear();
+    clearInterval(osu); clearInterval(tp); clearInterval(lap); clear();
     board.gravity = 750;
     moveable = false; end_game = false; dropable = true;  
     cur_piece = 0; cur_score = 0; is_pc = 0;
@@ -83,6 +81,8 @@ function reset_all(){
     for(var i = 1; i <= board.queue_row; i++){
         queue_state[i] = new Array(board.queue_col + 1).fill(0);
     }
+    start_time = Date.now();
+    check_multiple_keys();
 }
 function rng(l, r){
     return Math.floor(Math.random() * (r - l + 1)) + l;

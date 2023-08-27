@@ -7,7 +7,7 @@ function current_piece(id){
     pressed[67] = 0;
     if(pressed[190]) pressed[190] = 2;
     if(cur_piece > 0 && is_pc == 0){
-        cur_score += board.pc_score; update_score();
+        cur_score += board.pc_score * (1 + time_elapsed() / board.coefficient); update_score();
     }
     // console.log(id);
     moveable = true; degree = 1;
