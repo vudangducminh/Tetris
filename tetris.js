@@ -1,3 +1,5 @@
+const fccUrl = new URL("https://tetris.fun/");
+console.log(fccUrl);
 const gameBoard = document.getElementById('BoardTetris');
 const heldBoard = document.getElementById('Holded_piece');
 const queueBoard = document.getElementById('Queue');
