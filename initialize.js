@@ -2,7 +2,8 @@ function create_board(){
     time_elapsed();
     reset_all();
     gameBoard.innerHTML = '';
-    holdedBoard.innerHTML = '';
+    heldBoard.innerHTML = '';
+    queueBoard.innerHTML = '';
     var table = document.createElement('table');
     for(var i = 1; i <= board.row; i++){
         var row = document.createElement('tr');
@@ -15,7 +16,7 @@ function create_board(){
         table.appendChild(row);
     } 
     gameBoard.appendChild(table);
-    var holding_table = document.createElement('table');
+    table = document.createElement('table');
     for(var i = 1; i <= board.hold_row; i++){
         var row = document.createElement('tr');
         for(var j = 1; j <= board.hold_col; j++){
@@ -24,9 +25,21 @@ function create_board(){
             cell.backgroundColor = "black";
             row.appendChild(cell);
         }
-        holding_table.appendChild(row);
+        table.appendChild(row);
     } 
-    holdedBoard.appendChild(holding_table);
+    heldBoard.appendChild(table);
+    table = document.createElement('table');
+    for(var i = 1; i <= board.queue_row; i++){
+        var row = document.createElement('tr');
+        for(var j = 1; j <= board.queue_col; j++){
+            var cell = document.createElement('td');
+            cell.id = hash(i + board.queue_row, j);
+            cell.backgroundColor = "black";
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    } 
+    queueBoard.appendChild(table);
 }
 
 function shuffle(array){
@@ -53,5 +66,6 @@ function create_bag(){
         for(var j = 0; j < 7; j++) piece.push(bag[j]);
     }
     moveable = true;
+    add_queue(cur_piece);
     current_piece(cur_piece);
 }

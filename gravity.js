@@ -45,7 +45,8 @@ function current_piece(id){
                         num_lap = -1;
                         holdable = false;
                         clearInterval(lap);
-                        current_piece(++cur_piece);
+                        add_queue(++cur_piece);
+                        current_piece(cur_piece);
                     }
                 }
                 else{

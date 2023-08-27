@@ -20,8 +20,9 @@ function check_multiple_keys(){
                 holdable = true;
                 erase(); clearInterval(lap);
                 if(cur_piece + 1 > 0 && is_pc == 0) cur_score -= board.pc_score;
-                add_holding_piece(piece[hold]);
-                current_piece(++cur_piece);
+                add_holding_piece(piece[hold])
+                add_queue(++cur_piece);
+                current_piece(cur_piece);
             }
             else{
                 if(!holdable){

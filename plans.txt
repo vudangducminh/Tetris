@@ -8,8 +8,10 @@
 - add shadowed piece (done)
 - bug new game (gravity speed increase when click new game) (done)
 - need hold (done)
+- add queue (done)
 
-- add queue
+
+- update flexible movement 
 - add number of used pieces & cleared lines
 - add gravity increase based on time elapsed
 - add tsd, tst, b2b 

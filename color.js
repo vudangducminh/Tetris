@@ -40,6 +40,33 @@ function color_holding_piece(){
     }
 }
 
+
+function color_queue(){
+    for(var i = 1; i <= board.queue_row; i++){
+        for(var j = 1; j <= board.queue_col; j++){
+            let cell = document.getElementById(hash(i + board.queue_row, j));
+            if(queue_state[i][j] == 0) cell.style.backgroundColor = "black";
+            if(queue_state[i][j] == 1) cell.style.backgroundColor = "lightblue";
+            if(queue_state[i][j] == 2) cell.style.backgroundColor = "blue";
+            if(queue_state[i][j] == 3) cell.style.backgroundColor = "orange";
+            if(queue_state[i][j] == 4) cell.style.backgroundColor = "yellow";
+            if(queue_state[i][j] == 5) cell.style.backgroundColor = "red";
+            if(queue_state[i][j] == 6) cell.style.backgroundColor = "green";
+            if(queue_state[i][j] == 7) cell.style.backgroundColor = "purple";
+        }
+    }
+}
+
+function erase_queue(){
+    for(var i = 1; i <= board.queue_row; i++){
+        for(var j = 1; j <= board.queue_col; j++){
+            let cell = document.getElementById(hash(i + board.queue_row, j));
+            queue_state[i][j] = 0;
+            cell.style.backgroundColor = "black";
+        }
+    }
+}
+
 function erase_holding_piece(){
     for(var i = 1; i <= board.hold_row; i++){
         for(var j = 1; j <= board.hold_col; j++){

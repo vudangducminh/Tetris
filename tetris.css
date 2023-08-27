@@ -17,6 +17,18 @@ body {
     margin: 10px;
     padding: 0px;
 }
+
+.queue_design{
+    display: flex;
+    text-align: center;
+}
+
+.queue_design> div{
+    text-align: center;
+    margin: 10px;
+    padding: 0px;
+}
+
 .button_design{
     display: flex;
     text-align: center;
@@ -65,6 +77,21 @@ body {
 }
 
 #Holded_piece table td {
+    background-color: black;
+    width: 6px;
+    height: 6px;
+}
+
+#Queue table {
+    border-collapse: collapse;
+    font-size: 150%;
+    font-family: sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    border: 3px solid white;
+}
+
+#Queue table td {
     background-color: black;
     width: 6px;
     height: 6px;
