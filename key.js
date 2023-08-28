@@ -53,14 +53,14 @@ function check_multiple_keys(){
                 hard_drop(); pressed[32] = pressed[67] = 0; return;
             }
         }
-    }, board.reset);
+    }, board.movement_reset);
 }
 
 function teleport(){
     num_tp = 0;
     tp = setInterval(function(){
         num_tp++;
-        if(num_tp % 6 == 0){
+        if(num_tp % 5 == 0){
             if(pressed[188]){
                 for(var i = 1; i <= board.col; i++) move_left();
             }
@@ -68,7 +68,7 @@ function teleport(){
                 for(var i = 1; i <= board.col; i++)  move_right();
             }
         }
-    }, board.reset);
+    }, board.movement_reset);
 }
 
 document.onkeydown = (e) => {

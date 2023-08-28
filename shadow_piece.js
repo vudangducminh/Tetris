@@ -51,7 +51,7 @@ function shadow_piece(){
             if(shadow_state[i][j] == 1){
                 // console.log("??: ", i, j, r, c, "  ", state[i][j]);
                 if(state[i][j]) continue;
-                cell.style.backgroundColor = "gray";
+                if(cur_gamemode != "Blindfold mode") cell.style.backgroundColor = "gray";
             }
         }
     }

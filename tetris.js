@@ -10,13 +10,15 @@ var board = {
     gravity: 750,
     queue_row: 52,
     queue_col: 18,
-    reset: 25,
+    reset: 15,
+    movement_reset: 25,
     num_bag: 1000,
     pc_score: 1000,
     coefficient: 45000,
+    visible: 5,
 };
 
-
+var cur_gamemode;
 
 var cur_time, end_game, start_time, dropable, lap, cur_score, is_pc = 0;
 // 0 -> blank
@@ -99,16 +101,27 @@ function max(i, j){
     return i < j ? j : i;
 }
 
-function init(mode){
-    if(mode == 0){
-        create_board();
-        create_bag();
-    }
+function init(){
+    reset_all(); 
+    create_board();
+    create_bag();
 }
 
 function game_over(){
-   end_game = 1; return; 
+    end_game = true; 
+    end_state(); return;
 }
 function Classic_tetris(){
-    reset_all(); init(0);
+    cur_gamemode = "Classic tetris";
+    init();
+}
+
+function Flashlight(){
+    cur_gamemode = "Flashlight mode";
+    init();
+}
+
+function Blindfold(){
+    cur_gamemode = "Blindfold mode";
+    init();
 }

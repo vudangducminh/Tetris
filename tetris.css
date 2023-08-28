@@ -50,8 +50,8 @@ body {
 
 #BoardTetris table td {
     background-color: black;
-    width: 27px;
-    height: 27px;
+    width: 26px;
+    height: 26px;
     border: 0.5px solid  rgb(202, 194, 194);
 }
 
@@ -59,7 +59,7 @@ body {
     margin-right: auto;
     margin-left: auto;
     width: 120px;
-    height: 30px;
+    height: 24px;
     text-align: center;
     background-color:white;
     color: black;

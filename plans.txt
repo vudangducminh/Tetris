@@ -11,7 +11,10 @@
 - add queue (done)
 - update flexible movement (done)
 - add gravity increase based on time elapsed (done)
+- add flashlight & blindfold mode (done)
 
-- add flashlight & half-flashlight mode
+- add double time (board row / 2)
+- add hard rock (remove hold & increase speed a little bit from the beginning)
+- add hidden (remove queue)
 - add number of used pieces & cleared lines
 - add tsd, tst, b2b 
