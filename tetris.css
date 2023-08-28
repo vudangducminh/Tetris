@@ -38,6 +38,15 @@ body {
     margin: 0px;
     padding: 0px;
 }
+.score_design{
+    display: flex;
+    text-align: center;
+}
+.score_design> div{
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
 
 #BoardTetris table {
     border-collapse: collapse;
