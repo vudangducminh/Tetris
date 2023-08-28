@@ -12,9 +12,11 @@
 - update flexible movement (done)
 - add gravity increase based on time elapsed (done)
 - add flashlight & blindfold mode (done)
+- add double time (board row / 2) (done)
+- add hard rock (remove hold & increase speed a little bit from the beginning) (done)
+- add hidden (remove queue) (done)
 
-- add double time (board row / 2)
-- add hard rock (remove hold & increase speed a little bit from the beginning)
-- add hidden (remove queue)
+
+- add multiple mode in a play
 - add number of used pieces & cleared lines
 - add tsd, tst, b2b 

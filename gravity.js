@@ -1,9 +1,8 @@
 function current_piece(id){
     if(cur_piece + 1 == board.num_bag * 7) return;
-    if(cur_piece % 10 == 0 && cur_piece){
-        board.gravity -= board.reset;
-        if(board.gravity < board.reset * 3) board.gravity = board.reset * 3;
-    }
+    if(board.gravity > 300 && cur_piece % 10 == 0 && cur_piece) board.gravity -= board.reset;
+    else if(board.gravity > 100 && cur_piece % 15 == 0 && cur_piece) board.gravity -= board.reset;
+    else if(board.gravity > 15 && cur_piece % 20 == 0 && cur_piece) board.gravity -= board.reset;
     pressed[67] = 0;
     if(pressed[190]) pressed[190] = 2;
     if(cur_piece > 0 && is_pc == 0){

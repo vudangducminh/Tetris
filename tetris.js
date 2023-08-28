@@ -14,7 +14,7 @@ var board = {
     movement_reset: 10,
     num_bag: 1000,
     pc_score: 1000,
-    coefficient: 45000,
+    coefficient: 60000,
     visible: 5,
 };
 
@@ -69,7 +69,13 @@ function time_elapsed(){
 
 function reset_all(){
     clearInterval(osu); clearInterval(tp); clearInterval(lap); clear();
-    board.gravity = 750;
+    board.coefficient = 60000;
+    if(cur_gamemode == "Flash_light mode") board.coefficient /= 1.3;
+    if(cur_gamemode == "Blindfold mode") board.coefficient /= 2;
+    if(cur_gamemode == "Hidden mode") board.coefficient /= 1.2;
+    if(cur_gamemode == "Hard-rock mode") board.coefficient /= 1.3;
+    if(cur_gamemode == "Double-time mode") board.row = 10, board.gravity = 375, board.coefficient /= 1.5;
+    else board.row = 20, board.gravity = 750;
     moveable = false; end_game = false; dropable = true;  
     cur_piece = 0; cur_score = 0; is_pc = 0;
     hold = -1; holdable = false;
@@ -93,7 +99,7 @@ function rng(l, r){
 }
 
 function hash(i, j){
-    return (i - 1) * board.row + j;
+    return (i - 1) * 100 + j;
 }
 function min(i, j){
     return i > j ? j : i;
@@ -124,5 +130,17 @@ function Flashlight(){
 
 function Blindfold(){
     cur_gamemode = "Blindfold mode";
+    init();
+}
+function Hidden(){
+    cur_gamemode = "Hidden mode";
+    init();
+}
+function Hard_rock(){
+    cur_gamemode = "Hard-rock mode";
+    init();
+}
+function Double_time(){
+    cur_gamemode = "Double-time mode";
     init();
 }

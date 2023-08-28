@@ -14,24 +14,26 @@ function check_multiple_keys(){
             rotate_180();
         }
         if(pressed[67] == 1){
-            pressed[67] = 2; 
-            if(hold == -1){
-                hold = cur_piece;
-                holdable = true;
-                erase(); clearInterval(lap);
-                if(cur_piece + 1 > 0 && is_pc == 0) cur_score -= board.pc_score;
-                add_holding_piece(piece[hold]);
-                add_queue(++cur_piece);
-                current_piece(cur_piece);
-            }
-            else{
-                if(!holdable){
+            if(cur_gamemode != "Hard-rock mode"){
+                pressed[67] = 2; 
+                if(hold == -1){
+                    hold = cur_piece;
                     holdable = true;
                     erase(); clearInterval(lap);
-                    if(hold > 0 && is_pc == 0) cur_score -= board.pc_score;
-                    add_holding_piece(piece[cur_piece]);
-                    current_piece(hold);
-                    hold = cur_piece;
+                    if(is_pc == 0) cur_score -= board.pc_score;
+                    add_holding_piece(piece[hold]);
+                    add_queue(++cur_piece);
+                    current_piece(cur_piece);
+                }
+                else{
+                    if(!holdable){
+                        holdable = true;
+                        erase(); clearInterval(lap);
+                        if(is_pc == 0) cur_score -= board.pc_score;
+                        add_holding_piece(piece[cur_piece]);
+                        current_piece(hold);
+                        hold = cur_piece;
+                    }
                 }
             }
         }

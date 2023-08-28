@@ -7,16 +7,16 @@ function update_color(){
                 if(!shadow_state[i][j]) cell.style.backgroundColor = "black";
             }
             else{
-                if(cur_gamemode == "Flashlight mode"){
+                if(cur_gamemode == "Blindfold mode"){
+                    if(state[i][j] <= 7) cell.style.backgroundColor = "black";
+                    else cell.style.backgroundColor = color[state[i][j]];
+                }
+                else if(cur_gamemode == "Flashlight mode"){
                     if(i - board.visible <= r && i + board.visible >= r && j - board.visible <= c && j + board.visible >= c){
                         // console.log(i, j, r, c);
                         cell.style.backgroundColor = color[state[i][j]];
                     }
                     else cell.style.backgroundColor = "black";
-                }
-                else if(cur_gamemode == "Blindfold mode"){
-                    if(state[i][j] <= 7) cell.style.backgroundColor = "black";
-                    else cell.style.backgroundColor = color[state[i][j]];
                 }
                 else{
                     // console.log(i, j, color[state[i][j]]);
@@ -75,8 +75,8 @@ function erase_holding_piece(){
 }
 
 function erase(){
-    for(var i = max(1, r - 3); i <= min(board.row, r + 3); i++){
-        for(var j = max(1, c - 3); j <= min(board.col, c + 3); j++){
+    for(var i = max(1, r - 4); i <= min(board.row, r + 4); i++){
+        for(var j = max(1, c - 4); j <= min(board.col, c + 4); j++){
             if(state[i][j] >= 8) state[i][j] = 0;
         }
     }
