@@ -15,8 +15,7 @@
 - add double time (board row / 2) (done)
 - add hard rock (remove hold & increase speed a little bit from the beginning) (done)
 - add hidden (remove queue) (done)
+- add multiple mode in a play (done)
 
-
-- add multiple mode in a play
 - add number of used pieces & cleared lines
 - add tsd, tst, b2b 

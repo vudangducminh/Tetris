@@ -18,8 +18,6 @@ var board = {
     visible: 5,
 };
 
-var cur_gamemode;
-
 var erased = false, cur_time, end_game, start_time, dropable, lap, cur_score, is_pc = 0;
 // 0 -> blank
 // 1 -> I (light blue)
@@ -32,6 +30,13 @@ var erased = false, cur_time, end_game, start_time, dropable, lap, cur_score, is
 
 let priority_other = new Array(9), priority_I = new Array(9);
 let color = ["black", "lightblue", "blue", "orange", "yellow", "red", "green", "purple", "lightblue", "blue", "orange", "yellow", "red", "green", "purple"];
+let cur_gamemode = new Map();
+cur_gamemode.set("Flashlight mode", 0);
+cur_gamemode.set("Blindfold mode", 0);
+cur_gamemode.set("Hidden mode", 0);
+cur_gamemode.set("Hard-rock mode", 0);
+cur_gamemode.set("Double-time mode", 0);
+
 for(var i = 1; i <= 8; i++){    
     priority_other[i] = new Array(5).fill([0, 0]);
     priority_I[i] = new Array(5).fill([0, 0]);
@@ -70,11 +75,11 @@ function time_elapsed(){
 function reset_all(){
     clearInterval(osu); clearInterval(tp); clearInterval(lap); clear();
     board.coefficient = 60000;
-    if(cur_gamemode == "Flash_light mode") board.coefficient /= 1.3;
-    if(cur_gamemode == "Blindfold mode") board.coefficient /= 2;
-    if(cur_gamemode == "Hidden mode") board.coefficient /= 1.2;
-    if(cur_gamemode == "Hard-rock mode") board.coefficient /= 1.3;
-    if(cur_gamemode == "Double-time mode") board.row = 10, board.gravity = 375, board.coefficient /= 1.5;
+    if(cur_gamemode.get("Flash_light mode") == 1) board.coefficient /= 1.3;
+    if(cur_gamemode.get("Blindfold mode") == 1) board.coefficient /= 2;
+    if(cur_gamemode.get("Hidden mode") == 1) board.coefficient /= 1.2;
+    if(cur_gamemode.get("Hard-rock mode") == 1) board.coefficient /= 1.3;
+    if(cur_gamemode.get("Double-time mode") == 1) board.row = 10, board.gravity = 375, board.coefficient /= 1.5;
     else board.row = 20, board.gravity = 750;
     moveable = false; end_game = false; dropable = true;  
     cur_piece = 0; cur_score = 0; is_pc = 0;
@@ -137,32 +142,67 @@ function remove_button(){
     element = document.getElementById('mode6');
     element.parentNode.removeChild(element);
 }
-function Classic_tetris(){
-    cur_gamemode = "Classic tetris";
-    init();
-}
-
 function Flashlight(){
-    cur_gamemode = "Flashlight mode";
-    init();
+    let element = document.getElementById('mode1');
+    if(element.style.backgroundColor == "red"){
+        element.style.backgroundColor = "green";
+        cur_gamemode.set("Flashlight mode", 1);
+        let element2 = document.getElementById('mode2');
+        if(element2.style.backgroundColor == "green") element2.style.backgroundColor = "red";
+    }
+    else{
+        element.style.backgroundColor = "red";
+        cur_gamemode.set("Flashlight mode", 0);
+    }
 }
 
 function Blindfold(){
-    cur_gamemode = "Blindfold mode";
-    init();
+    let element = document.getElementById('mode2');
+    if(element.style.backgroundColor == "red"){
+        element.style.backgroundColor = "green";
+        cur_gamemode.set("Blindfold mode", 1);
+        let element2 = document.getElementById('mode1');
+        if(element2.style.backgroundColor == "green") element2.style.backgroundColor = "red";
+    }
+    else{
+        element.style.backgroundColor = "red";
+        cur_gamemode.set("Blindfold mode", 0);
+    }
 }
 function Hidden(){
-    cur_gamemode = "Hidden mode";
-    init();
+    let element = document.getElementById('mode3');
+    if(element.style.backgroundColor == "red"){
+        cur_gamemode.set("Hidden mode", 1);
+        element.style.backgroundColor = "green";
+    }
+    else{
+        cur_gamemode.set("Hidden mode", 0);
+        element.style.backgroundColor = "red";
+    }
 }
 function Hard_rock(){
-    cur_gamemode = "Hard-rock mode";
-    init();
+    let element = document.getElementById('mode4');
+    if(element.style.backgroundColor == "red"){
+        cur_gamemode.set("Hard-rock mode", 1);
+        element.style.backgroundColor = "green";
+    }
+    else{
+        cur_gamemode.set("Hard-rock mode", 0);
+        element.style.backgroundColor = "red";
+    }
 }
 function Double_time(){
-    cur_gamemode = "Double-time mode";
-    init();
+    let element = document.getElementById('mode5');
+    if(element.style.backgroundColor == "red"){
+        cur_gamemode.set("Double-time mode", 1);
+        element.style.backgroundColor = "green";
+    }
+    else{
+        cur_gamemode.set("Double-time mode", 0);
+        element.style.backgroundColor = "red";
+    }
 }
-function clear(){
 
+function Start_game(){
+    init();
 }

@@ -77,7 +77,7 @@ function fill_queue(type, r, c){
 }
 
 function add_queue(cur_index){
-    if(cur_gamemode == "Hidden mode") return;
+    if(cur_gamemode.get("Hidden mode") == 1) return;
     erase_queue();
     fill_queue(piece[cur_index + 1], 1, 1);
     fill_queue(piece[cur_index + 2], 11, 1);
