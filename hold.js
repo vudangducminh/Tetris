@@ -1,7 +1,7 @@
 function add_holding_piece(type){
     erase_holding_piece();
     if(type == 1){
-        for(var i = 7; i <= 9; i++){
+        for(var i = 6; i <= 8; i++){
             for(var j = 4; j <= 15; j++){
                 holding_state[i][j] = type;
             }

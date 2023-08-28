@@ -1,6 +1,6 @@
 function fill_queue(type, r, c){
     if(type == 1){
-        for(var i = r + 6; i <= r + 8; i++){
+        for(var i = r + 5; i <= r + 7; i++){
             for(var j = c + 3; j <= c + 14; j++){
                 queue_state[i][j] = type;
             }
@@ -79,8 +79,8 @@ function fill_queue(type, r, c){
 function add_queue(cur_index){
     erase_queue();
     fill_queue(piece[cur_index + 1], 1, 1);
-    fill_queue(piece[cur_index + 2], 15, 1);
-    fill_queue(piece[cur_index + 3], 29, 1);
-    fill_queue(piece[cur_index + 4], 43, 1);
-    fill_queue(piece[cur_index + 5], 57, 1);
+    fill_queue(piece[cur_index + 2], 11, 1);
+    fill_queue(piece[cur_index + 3], 21, 1);
+    fill_queue(piece[cur_index + 4], 31, 1);
+    fill_queue(piece[cur_index + 5], 41, 1);
 }

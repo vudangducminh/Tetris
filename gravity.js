@@ -23,9 +23,10 @@ function current_piece(id){
     dropable = true;
     num_lap = 0;
     crr = 0;
+    begin_state(); shadow_piece();
     lap = setInterval(function(){ 
         num_lap++;
-        if(num_lap % (board.gravity / board.reset) == 1){
+        if(num_lap % (board.gravity / board.reset) == 0){
             // console.log("BEGIN ", r, c);
             begin_state(); shadow_piece();
             moveable = false;
@@ -37,7 +38,7 @@ function current_piece(id){
                 // console.log("FAKE STOP: ", r, c);
                 if(dropable == false){ 
                     // console.log("REAL STOP: ", r, c);
-                    if(!crr) crr = 1, num_lap = 2;
+                    if(!crr) crr = 1, num_lap = 1;
                     else{
                         moveable = false; 
                         fill(); begin_state();

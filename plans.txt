@@ -12,5 +12,6 @@
 - update flexible movement (done)
 - add gravity increase based on time elapsed (done)
 
+- add flashlight & half-flashlight mode
 - add number of used pieces & cleared lines
 - add tsd, tst, b2b 

@@ -1,7 +1,5 @@
-const fccUrl = new URL("https://tetris.fun/");
-console.log(fccUrl);
 const gameBoard = document.getElementById('BoardTetris');
-const heldBoard = document.getElementById('Holded_piece');
+const heldBoard = document.getElementById('Held_piece');
 const queueBoard = document.getElementById('Queue');
 const score = document.getElementById("ScoreTetris");
 var board = {
@@ -10,17 +8,17 @@ var board = {
     hold_row: 12,
     hold_col: 18,
     gravity: 750,
-    queue_row: 72,
+    queue_row: 52,
     queue_col: 18,
     reset: 25,
     num_bag: 1000,
     pc_score: 1000,
-    coefficient: 30000,
+    coefficient: 45000,
 };
 
 
 
-var cur_time, end_game, start_time, dropable, lap, num_lap, cur_score, is_pc = 0;
+var cur_time, end_game, start_time, dropable, lap, cur_score, is_pc = 0;
 // 0 -> blank
 // 1 -> I (light blue)
 // 2 -> L (blue)
@@ -31,6 +29,7 @@ var cur_time, end_game, start_time, dropable, lap, num_lap, cur_score, is_pc = 0
 // 7 -> T (purple)
 
 let priority_other = new Array(9), priority_I = new Array(9);
+let color = ["black", "lightblue", "blue", "orange", "yellow", "red", "green", "purple", "lightblue", "blue", "orange", "yellow", "red", "green", "purple"];
 for(var i = 1; i <= 8; i++){    
     priority_other[i] = new Array(5).fill([0, 0]);
     priority_I[i] = new Array(5).fill([0, 0]);
@@ -100,18 +99,16 @@ function max(i, j){
     return i < j ? j : i;
 }
 
-function init(){
-    create_board();
-    create_bag();
+function init(mode){
+    if(mode == 0){
+        create_board();
+        create_bag();
+    }
 }
 
 function game_over(){
    end_game = 1; return; 
 }
-window.addEventListener('load', function(){
-    init();
-});
-function New_game(){
-    reset_all();
-	window.location.reload();
+function Classic_tetris(){
+    reset_all(); init(0);
 }
