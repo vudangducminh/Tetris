@@ -7,11 +7,11 @@ var board = {
     col: 10,
     hold_row: 12,
     hold_col: 18,
-    gravity: 750,
+    gravity: 750,    
     queue_row: 52,
     queue_col: 18,
     reset: 15,
-    movement_reset: 25,
+    movement_reset: 10,
     num_bag: 1000,
     pc_score: 1000,
     coefficient: 45000,
@@ -86,6 +86,7 @@ function reset_all(){
     }
     start_time = Date.now();
     check_multiple_keys();
+    teleport();
 }
 function rng(l, r){
     return Math.floor(Math.random() * (r - l + 1)) + l;

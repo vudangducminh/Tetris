@@ -38,12 +38,15 @@ function current_piece(id){
                 // console.log("FAKE STOP: ", r, c);
                 if(dropable == false){ 
                     // console.log("REAL STOP: ", r, c);
-                    if(!crr) crr = 1, num_lap = -50;
+                    if(!crr){
+                        moveable = true;
+                        crr = 1, num_lap = -30;
+                    }
                     else{
                         moveable = false; 
                         fill(); begin_state();
                         is_pc += 4;
-                        num_lap = -1;
+                        num_lap = -2;
                         holdable = false;
                         is_need = false;
                         clearInterval(lap);
