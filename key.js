@@ -1,7 +1,3 @@
-function clear(){
-    pressed[32] = pressed[65] = pressed[67] = pressed[88] = pressed[90] = pressed[188] = pressed[190] = pressed[191] = 0;
-}
-
 function is_right_key(x){
     if(x == 32 || x == 65 || x == 67 || x == 82 || x == 88 || x == 90 || x == 188 || x == 190 || x == 191) return true;
     return false;

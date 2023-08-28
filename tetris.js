@@ -20,7 +20,7 @@ var board = {
 
 var cur_gamemode;
 
-var cur_time, end_game, start_time, dropable, lap, cur_score, is_pc = 0;
+var erased = false, cur_time, end_game, start_time, dropable, lap, cur_score, is_pc = 0;
 // 0 -> blank
 // 1 -> I (light blue)
 // 2 -> L (blue)
@@ -109,6 +109,10 @@ function max(i, j){
 }
 
 function init(){
+    if(erased == false){
+        erased = true;
+        remove_button();
+    }
     reset_all(); 
     create_board();
     create_bag();
@@ -117,6 +121,21 @@ function init(){
 function game_over(){
     end_game = true; 
     end_state(); return;
+}
+
+function remove_button(){
+    let element = document.getElementById('mode1');
+    element.parentNode.removeChild(element);
+    element = document.getElementById('mode2');
+    element.parentNode.removeChild(element);
+    element = document.getElementById('mode3');
+    element.parentNode.removeChild(element);
+    element = document.getElementById('mode4');
+    element.parentNode.removeChild(element);
+    element = document.getElementById('mode5');
+    element.parentNode.removeChild(element);
+    element = document.getElementById('mode6');
+    element.parentNode.removeChild(element);
 }
 function Classic_tetris(){
     cur_gamemode = "Classic tetris";
@@ -143,4 +162,7 @@ function Hard_rock(){
 function Double_time(){
     cur_gamemode = "Double-time mode";
     init();
+}
+function clear(){
+
 }
