@@ -24,42 +24,56 @@ function current_piece(id){
     dropable = true;
     num_lap = 0;
     crr = 0;
+    var begin_time = Date.now();
     begin_state(); shadow_piece();
     lap = setInterval(function(){ 
         num_lap++;
         var is_need = true;
-        if(num_lap >= 0 && num_lap % (board.gravity / board.reset) == 0){
-            // console.log("BEGIN ", r, c);
-            begin_state(); shadow_piece();
-            moveable = false;
-            if(dropping(0) == true){
-                moveable = true;
-                crr = 0; update_color();
-            }
-            else{
-                // console.log("FAKE STOP: ", r, c);
-                if(dropable == false){ 
-                    // console.log("REAL STOP: ", r, c);
-                    if(!crr){
-                        moveable = true;
-                        crr = 1, num_lap = -30;
-                    }
-                    else{
-                        moveable = false; 
-                        fill(); begin_state();
-                        is_pc += 4;
-                        num_lap = -2;
-                        holdable = false;
-                        is_need = false;
-                        clearInterval(lap);
-                        add_queue(++cur_piece);
-                        current_piece(cur_piece);
-                    }
+        if(Date.now() - begin_time > board.gravity * board.row + board.maxtime){
+            hard_drop();
+            fill();
+            is_pc += 4;
+            num_lap = -2;
+            holdable = false;
+            is_need = false;
+            clearInterval(lap);
+            add_queue(++cur_piece);
+            current_piece(cur_piece);
+        }
+        else{
+            if(num_lap >= 0 && num_lap % (board.gravity / board.reset) == 0){
+                // console.log("BEGIN ", r, c);
+                begin_state(); shadow_piece();
+                moveable = false;
+                if(dropping(0) == true){
+                    moveable = true;
+                    crr = 0; update_color();
                 }
                 else{
-                    moveable = true; crr = 0;
-                }
-            }    
+                    // console.log("FAKE STOP: ", r, c);
+                    if(dropable == false){ 
+                        // console.log("REAL STOP: ", r, c);
+                        if(!crr){
+                            moveable = true;
+                            crr = 1, num_lap = -30;
+                        }
+                        else{
+                            moveable = false; 
+                            fill();
+                            is_pc += 4;
+                            num_lap = -2;
+                            holdable = false;
+                            is_need = false;
+                            clearInterval(lap);
+                            add_queue(++cur_piece);
+                            current_piece(cur_piece);
+                        }
+                    }
+                    else{
+                        moveable = true; crr = 0;
+                    }
+                } 
+            }   
         }
         if(is_need == true) update_color();
     }, board.reset);

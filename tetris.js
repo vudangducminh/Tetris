@@ -16,6 +16,7 @@ var board = {
     pc_score: 1000,
     coefficient: 60000,
     visible: 5,
+    maxtime: 3000,
 };
 
 var erased = false, cur_time, end_game, start_time, dropable, lap, cur_score, is_pc = 0;

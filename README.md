@@ -16,6 +16,9 @@
 + Hard-rock: remove hold
 + Double-time: increase speed & reduce board size
 
+- Warning:
++ Cannot choose flashlight & blindfold at a same time
+
 - To start a game:
 + Enable mods are colored green, unable mods are red.
 + Start game: start a game after have chosen mods (if no mods are chosen, the gameplay will be normal)

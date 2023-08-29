@@ -75,8 +75,8 @@ function erase_holding_piece(){
 }
 
 function erase(){
-    for(var i = max(1, r - 4); i <= min(board.row, r + 4); i++){
-        for(var j = max(1, c - 4); j <= min(board.col, c + 4); j++){
+    for(var i = max(1, r - 5); i <= min(board.row, r + 5); i++){
+        for(var j = max(1, c - 5); j <= min(board.col, c + 5); j++){
             if(state[i][j] >= 8) state[i][j] = 0;
         }
     }
