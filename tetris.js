@@ -74,7 +74,7 @@ function time_elapsed(){
 
 function reset_all(){
     clearInterval(osu); clearInterval(tp); clearInterval(lap); clear();
-    board.coefficient = 60000;
+    board.coefficient = 60000; board.visible = 5;
     if(cur_gamemode.get("Flash_light mode") == 1) board.coefficient /= 1.3;
     if(cur_gamemode.get("Blindfold mode") == 1) board.coefficient /= 2;
     if(cur_gamemode.get("Hidden mode") == 1) board.coefficient /= 1.2;
