@@ -17,4 +17,5 @@
 + Double-time: increase speed & reduce board size
 
 - To start a game:
++ Enable mods are colored green, unable mods are red.
 + Start game: start a game after have chosen mods (if no mods are chosen, the gameplay will be normal)
