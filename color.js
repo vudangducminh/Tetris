@@ -3,20 +3,31 @@ function update_color(){
     for(var i = 1; i <= board.row; i++){
         for(var j = 1; j <= board.col; j++){
             let cell = document.getElementById(hash(i, j));
+            var dist = abs(i, r) + abs(j, c);
             if(state[i][j] == 0){
-                if(!shadow_state[i][j]) cell.style.backgroundColor = "black";
+                if(!shadow_state[i][j]){
+                    if(cur_gamemode.get("Flashlight mode") == 1){
+                        if(dist <= board.visible){
+                            // console.log(i, j, r, c);
+                            cell.style.backgroundColor = color[state[i][j]];
+                        }
+                        else cell.style.backgroundColor = "rgb(24, 20, 20)";
+                    }
+                    else if(cur_gamemode.get("Blindfold mode") == 1) cell.style.backgroundColor = "rgb(24, 20, 20)";
+                    else cell.style.backgroundColor = "black";
+                }
             }
             else{
                 if(cur_gamemode.get("Blindfold mode") == 1){
-                    if(state[i][j] <= 7) cell.style.backgroundColor = "black";
+                    if(state[i][j] <= 7) cell.style.backgroundColor = "rgb(24, 20, 20)";
                     else cell.style.backgroundColor = color[state[i][j]];
                 }
                 else if(cur_gamemode.get("Flashlight mode") == 1){
-                    if(i - board.visible <= r && i + board.visible >= r && j - board.visible <= c && j + board.visible >= c){
+                    if(dist <= board.visible){   
                         // console.log(i, j, r, c);
                         cell.style.backgroundColor = color[state[i][j]];
                     }
-                    else cell.style.backgroundColor = "black";
+                    else cell.style.backgroundColor = "rgb(24, 20, 20)";
                 }
                 else{
                     // console.log(i, j, color[state[i][j]]);

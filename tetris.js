@@ -100,6 +100,12 @@ function reset_all(){
     check_multiple_keys();
     teleport();
 }
+
+function abs(a, b){
+    if(a > b) return a - b;
+    else return b - a;
+}
+
 function rng(l, r){
     return Math.floor(Math.random() * (r - l + 1)) + l;
 }
@@ -149,7 +155,10 @@ function Flashlight(){
         element.style.backgroundColor = "green";
         cur_gamemode.set("Flashlight mode", 1);
         let element2 = document.getElementById('mode2');
-        if(element2.style.backgroundColor == "green") element2.style.backgroundColor = "red";
+        if(element2.style.backgroundColor == "green"){
+            element2.style.backgroundColor = "red";
+            cur_gamemode.set("Blindfold mode", 0);
+        }
     }
     else{
         element.style.backgroundColor = "red";
@@ -163,7 +172,10 @@ function Blindfold(){
         element.style.backgroundColor = "green";
         cur_gamemode.set("Blindfold mode", 1);
         let element2 = document.getElementById('mode1');
-        if(element2.style.backgroundColor == "green") element2.style.backgroundColor = "red";
+        if(element2.style.backgroundColor == "green"){
+            element2.style.backgroundColor = "red";
+            cur_gamemode.set("Flashlight mode", 0);
+        }
     }
     else{
         element.style.backgroundColor = "red";
