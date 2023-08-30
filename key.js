@@ -14,7 +14,7 @@ function check_multiple_keys(){
             rotate_180();
         }
         if(pressed[67] == 1){
-            if(cur_gamemode.get("Hard-rock mode") == 0){
+            if(cur_gamemode.get("Nightmare mode") == 0){
                 pressed[67] = 2; 
                 if(hold == -1){
                     hold = cur_piece;
@@ -68,7 +68,10 @@ document.onkeydown = (e) => {
     if(e.key == 'r') init();
     if(moveable == false) return;    
     if(e.keyCode == 32){
-        hard_drop(); pressed[32] = pressed[67] = 0;
+        if(pressed[32] == 1){
+            pressed[32] = 2;
+            hard_drop();
+        }
     }
     if(e.key == ',') move_left();
     if(e.key == '/') move_right();

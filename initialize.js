@@ -22,7 +22,7 @@ function create_board(){
         for(var j = 1; j <= board.hold_col; j++){
             var cell = document.createElement('td');
             cell.id = hash(i + board.row, j);
-            if(cur_gamemode.get("Hard-rock mode") == 1) cell.style.backgroundColor = "red";
+            if(cur_gamemode.get("Nightmare mode") == 1) cell.style.backgroundColor = "red";
             else cell.style.backgroundColor = "black";
             row.appendChild(cell);
         }

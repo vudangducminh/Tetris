@@ -16,7 +16,7 @@ var board = {
     pc_score: 1000,
     coefficient: 60000,
     visible: 5,
-    maxtime: 3000,
+    maxtime: 2000,
 };
 
 var erased = false, cur_time, end_game, start_time, dropable, lap, cur_score, is_pc = 0;
@@ -37,6 +37,7 @@ cur_gamemode.set("Blindfold mode", 0);
 cur_gamemode.set("Hidden mode", 0);
 cur_gamemode.set("Hard-rock mode", 0);
 cur_gamemode.set("Double-time mode", 0);
+cur_gamemode.set("Nightmare mode", 0);
 
 for(var i = 1; i <= 8; i++){    
     priority_other[i] = new Array(5).fill([0, 0]);
@@ -72,16 +73,21 @@ var moveable = false, tp, crr, osu, cur_time, cur_piece = 0, r = 0, c = 0, index
 function time_elapsed(){
     return Date.now() - start_time;
 }
-
+function min(a, b){
+    return a > b ? b : a;
+}
+function max(a, b){
+    return a < b ? b : a;
+}
 function reset_all(){
     clearInterval(osu); clearInterval(tp); clearInterval(lap); clear();
-    board.coefficient = 60000; board.visible = 5;
+    board.coefficient = 60000; board.visible = 5; board.row = 20, board.col = 10, board.gravity = 750;
     if(cur_gamemode.get("Flash_light mode") == 1) board.coefficient /= 1.3;
     if(cur_gamemode.get("Blindfold mode") == 1) board.coefficient /= 2;
     if(cur_gamemode.get("Hidden mode") == 1) board.coefficient /= 1.2;
-    if(cur_gamemode.get("Hard-rock mode") == 1) board.coefficient /= 1.3;
-    if(cur_gamemode.get("Double-time mode") == 1) board.row = 10, board.gravity = 375, board.coefficient /= 1.5;
-    else board.row = 20, board.gravity = 750;
+    if(cur_gamemode.get("Hard-rock mode") == 1) board.col = 12, board.gravity = min(board.gravity, 650), board.coefficient /= 1.2;
+    if(cur_gamemode.get("Double-time mode") == 1) board.row = 10, board.gravity = min(board.gravity, 375), board.coefficient /= 1.5;
+    if(cur_gamemode.get("Nightmare mode") == 1) board.coefficient /= 1.3;
     moveable = false; end_game = false; dropable = true;  
     cur_piece = 0; cur_score = 0; is_pc = 0;
     hold = -1; holdable = false;
@@ -147,6 +153,8 @@ function remove_button(){
     element = document.getElementById('mode5');
     element.parentNode.removeChild(element);
     element = document.getElementById('mode6');
+    element.parentNode.removeChild(element);
+    element = document.getElementById('mode7');
     element.parentNode.removeChild(element);
 }
 function Flashlight(){
@@ -216,6 +224,17 @@ function Double_time(){
     }
 }
 
+function Nightmare(){
+    let element = document.getElementById('mode6');
+    if(element.style.backgroundColor == "red"){
+        cur_gamemode.set("Nightmare mode", 1);
+        element.style.backgroundColor = "green";
+    }
+    else{
+        cur_gamemode.set("Nightmare mode", 0);
+        element.style.backgroundColor = "red";
+    }
+}
 function Start_game(){
     init();
 }

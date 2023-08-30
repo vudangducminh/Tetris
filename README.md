@@ -13,9 +13,9 @@
 + Flashlight: reduce vision to a small area
 + Blindfold: unable to see the state of the board
 + Hidden: remove queue
-+ Hard-rock: remove hold
-+ Double-time: increase speed & reduce board size
-
++ Hard-rock: slightly increase speed & board size 
++ Double-time: significantly increase speed & reduce board height
++ Nightmare: remove hold
 - Warning:
 + Cannot choose flashlight & blindfold at a same time
 
