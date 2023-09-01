@@ -14,7 +14,7 @@ function check_multiple_keys(){
             rotate_180();
         }
         if(pressed[67] == 1){
-            if(cur_gamemode.get("Nightmare mode") == 0){
+            if(cur_gamemode.get("Classic mode") == 0){
                 pressed[67] = 2; 
                 if(hold == -1){
                     hold = cur_piece;

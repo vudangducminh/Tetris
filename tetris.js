@@ -37,7 +37,8 @@ cur_gamemode.set("Blindfold mode", 0);
 cur_gamemode.set("Hidden mode", 0);
 cur_gamemode.set("Hard-rock mode", 0);
 cur_gamemode.set("Double-time mode", 0);
-cur_gamemode.set("Nightmare mode", 0);
+cur_gamemode.set("Classic mode", 0);
+cur_gamemode.set("Reverse mode", 0);
 
 for(var i = 1; i <= 8; i++){    
     priority_other[i] = new Array(5).fill([0, 0]);
@@ -87,7 +88,8 @@ function reset_all(){
     if(cur_gamemode.get("Hidden mode") == 1) board.coefficient /= 1.2;
     if(cur_gamemode.get("Hard-rock mode") == 1) board.col = 12, board.gravity = min(board.gravity, 650), board.coefficient /= 1.2;
     if(cur_gamemode.get("Double-time mode") == 1) board.row = 10, board.gravity = min(board.gravity, 375), board.coefficient /= 1.5;
-    if(cur_gamemode.get("Nightmare mode") == 1) board.coefficient /= 1.3;
+    if(cur_gamemode.get("Classic mode") == 1) board.coefficient /= 1.3;
+    if(cur_gamemode.get("Reverse mode") == 1) board.coefficient /= 2;
     moveable = false; end_game = false; dropable = true;  
     cur_piece = 0; cur_score = 0; is_pc = 0;
     hold = -1; holdable = false;
@@ -155,6 +157,8 @@ function remove_button(){
     element = document.getElementById('mode6');
     element.parentNode.removeChild(element);
     element = document.getElementById('mode7');
+    element.parentNode.removeChild(element);
+    element = document.getElementById('mode8');
     element.parentNode.removeChild(element);
 }
 function Flashlight(){
@@ -224,14 +228,25 @@ function Double_time(){
     }
 }
 
-function Nightmare(){
+function Classic(){
     let element = document.getElementById('mode6');
     if(element.style.backgroundColor == "red"){
-        cur_gamemode.set("Nightmare mode", 1);
+        cur_gamemode.set("Classic mode", 1);
         element.style.backgroundColor = "green";
     }
     else{
-        cur_gamemode.set("Nightmare mode", 0);
+        cur_gamemode.set("Classic mode", 0);
+        element.style.backgroundColor = "red";
+    }
+}
+function Reverse(){
+    let element = document.getElementById('mode7');
+    if(element.style.backgroundColor == "red"){
+        cur_gamemode.set("Reverse mode", 1);
+        element.style.backgroundColor = "green";
+    }
+    else{
+        cur_gamemode.set("Reverse mode", 0);
         element.style.backgroundColor = "red";
     }
 }

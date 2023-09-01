@@ -3,6 +3,7 @@ function update_color(){
     for(var i = 1; i <= board.row; i++){
         for(var j = 1; j <= board.col; j++){
             let cell = document.getElementById(hash(i, j));
+            if(cur_gamemode.get("Reverse mode") == 1) cell = document.getElementById(hash(board.row - i + 1, board.col - j + 1));
             var dist = abs(i, r) + abs(j, c);
             if(state[i][j] == 0){
                 if(!shadow_state[i][j]){
@@ -42,6 +43,7 @@ function end_state(){
     for(var i = 1; i <= board.row; i++){
         for(var j = 1; j <= board.col; j++){
             let cell = document.getElementById(hash(i, j));
+            if(cur_gamemode.get("Reverse mode") == 1) cell = document.getElementById(hash(board.row - i + 1, board.col - j + 1));
             cell.style.backgroundColor = color[state[i][j]];
         }
     }

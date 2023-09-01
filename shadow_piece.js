@@ -52,6 +52,7 @@ function shadow_piece(){
     for(var i = max(1, cur_r - 2); i <= min(board.row, cur_r + 2); i++){
         for(var j = max(1, cur_c - 2); j <= min(board.col, cur_c + 2); j++){
             let cell = document.getElementById(hash(i, j));
+            if(cur_gamemode.get("Reverse mode") == 1) cell = document.getElementById(hash(board.row - i + 1, board.col - j + 1));
             if(shadow_state[i][j] == 1){
                 // console.log("??: ", i, j, r, c, "  ", state[i][j]);
                 if(state[i][j]) continue;
