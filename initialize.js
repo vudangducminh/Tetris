@@ -4,6 +4,8 @@ function create_board(){
     gameBoard.innerHTML = '';
     heldBoard.innerHTML = '';
     queueBoard.innerHTML = '';
+    lines.innerHTML = '';
+    score.innerHTML = '';
     var table = document.createElement('table');
     for(var i = 1; i <= board.row; i++){
         var row = document.createElement('tr');
@@ -43,6 +45,28 @@ function create_board(){
         table.appendChild(row);
     } 
     queueBoard.appendChild(table);
+    table = document.createElement('table');
+    for(var i = 1; i <= 1; i++){
+        var row = document.createElement('tr');
+        for(var j = 1; j <= 1; j++){
+            var cell = document.createElement('td');
+            cell.id = hash(200, 200);
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    } 
+    lines.appendChild(table);
+    table = document.createElement('table');
+    for(var i = 1; i <= 1; i++){
+        var row = document.createElement('tr');
+        for(var j = 1; j <= 1; j++){
+            var cell = document.createElement('td');
+            cell.id = hash(300, 300);
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    } 
+    score.appendChild(table);
 }
 
 function shuffle(array){

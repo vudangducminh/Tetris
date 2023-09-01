@@ -36,5 +36,12 @@ function clear_lines(){
             break;
         }
     }
+    total_lines += num_lines;
     update_score();
+    update_lines();
+}
+
+function update_lines(){
+    let cell = document.getElementById(hash(200, 200));
+    cell.textContent = "Lines cleared: " + total_lines;
 }

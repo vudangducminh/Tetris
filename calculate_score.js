@@ -9,5 +9,6 @@ function add_score(x){
 }
 function update_score(){
     cur_score = Math.round(cur_score);
-    score.textContent = "Score: " + cur_score;
+    let cell = document.getElementById(hash(300, 300));
+    cell.textContent = "Score: " + cur_score;
 }

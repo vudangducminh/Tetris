@@ -38,8 +38,15 @@ body {
 .button_design> div{
     text-align: center;
 }
+.lines_design{
+    display: center;
+    text-align: center;
+}
+.lines_design> div{
+    text-align: center;
+}
 .score_design{
-    display: flex;
+    display: center;
     text-align: center;
     margin: 0px;
     padding: 0px;
@@ -64,7 +71,16 @@ body {
     border: 0.5px solid  rgb(202, 194, 194);
 }
 
-#ScoreTetris {
+#ScoreTetris table{
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    background-color:white;
+    color: black;
+    font-weight: bolder;
+    border-radius: 20px 20px 20px 20px;
+}
+#ScoreTetris table td{
     margin-right: auto;
     margin-left: auto;
     width: 120px;
@@ -72,8 +88,22 @@ body {
     text-align: center;
     background-color:white;
     color: black;
-    font-weight: bolder;
     border-radius: 20px 20px 20px 20px;
+}
+
+#Lines table{
+    border-collapse: collapse;
+    font-size: 150%;
+    font-family: sans-serif;
+    font-weight: bold;
+    display: inline-block;
+}
+
+#Lines table td{
+    background-color: black;
+    width: 144px;
+    height: 30px;
+    color: white;
 }
 
 #Held_piece table {

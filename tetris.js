@@ -2,6 +2,7 @@ const gameBoard = document.getElementById('BoardTetris');
 const heldBoard = document.getElementById('Held_piece');
 const queueBoard = document.getElementById('Queue');
 const score = document.getElementById("ScoreTetris");
+const lines = document.getElementById("Lines");
 var board = {
     row: 20,
     col: 10,
@@ -19,7 +20,7 @@ var board = {
     maxtime: 2000,
 };
 
-var erased = false, cur_time, end_game, start_time, dropable, lap, cur_score, is_pc = 0;
+var erased = false, cur_time, end_game, start_time, dropable, lap, cur_score, total_lines, is_pc = 0;
 // 0 -> blank
 // 1 -> I (light blue)
 // 2 -> L (blue)
@@ -92,6 +93,7 @@ function reset_all(){
     if(cur_gamemode.get("Reverse mode") == 1) board.coefficient /= 2;
     moveable = false; end_game = false; dropable = true;  
     cur_piece = 0; cur_score = 0; is_pc = 0;
+    total_lines = 0;
     hold = -1; holdable = false;
     piece = [];  
     for(var i = 1; i <= board.row; i++){
