@@ -15,7 +15,8 @@
 + Hidden: remove queue
 + Hard-rock: slightly increase speed & board size 
 + Double-time: significantly increase speed & reduce board height
-+ Nightmare: remove hold
++ Classic: remove hold
++ Reverse: reverse board & control
 - Warning:
 + Cannot choose flashlight & blindfold at a same time
 
