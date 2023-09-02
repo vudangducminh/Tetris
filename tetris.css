@@ -40,10 +40,10 @@ body {
 }
 .lines_design{
     display: center;
-    text-align: center;
+    text-align: right;
 }
 .lines_design> div{
-    text-align: center;
+    text-align: right;
 }
 .score_design{
     display: center;
@@ -93,23 +93,20 @@ body {
 
 #Text{
     font-size: 12px;
-    width: 144x;
-    height: 15px;
     color: white;
 }
 
-#Lines table{
-    border-collapse: collapse;
-    font-size: 150%;
-    font-family: sans-serif;
-    font-weight: bold;
-    display: inline-block;
+#Lines{
+    font-size: 30px;
+    color: white;
+}
+#Text2{
+    font-size: 12px;
+    color: white;
 }
 
-#Lines table td{
-    background-color: black;
-    width: 144px;
-    height: 30px;
+#Level{
+    font-size: 30px;
     color: white;
 }
 

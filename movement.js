@@ -34,7 +34,7 @@ function dropping(type){
 function move_left(){
     // console.log("LEFT: ", r, c);
     if(moveable == false) return;
-    if(dropable == false) num_lap = -30;
+    if(dropable == false) num_lap = -(board.gravity / board.reset) * 2;
     for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
         for(var j = max(1, c - 2); j <= min(board.col, c + 2); j++){
             if(state[i][j] >= 8){
@@ -63,7 +63,7 @@ function move_left(){
 function move_right(){
     // console.log("RIGHT: ", r, c);
     if(moveable == false) return;
-    if(dropable == false) num_lap = -30;
+    if(dropable == false) num_lap = -(board.gravity / board.reset) * 2;
     for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
         for(var j = min(board.col, c + 2); j >= max(1, c - 2); j--){
             if(state[i][j] >= 8){
@@ -92,7 +92,7 @@ function move_right(){
 function soft_drop(type){
     if(type == 1) movement = false, dropable = false;
     while(dropping(1) == true) cur_score += 1 + time_elapsed() / board.coefficient;
-    num_lap = -30;
+    num_lap = -(board.gravity / board.reset) * 2;
     update_score(); update_color()
     if(type == 1) fill();
 }

@@ -4,6 +4,8 @@ const queueBoard = document.getElementById('Queue');
 const score = document.getElementById("ScoreTetris");
 const lines = document.getElementById("Lines");
 const text = document.getElementById("Text");
+const lv = document.getElementById("Level");
+const text2 = document.getElementById("Text2");
 var board = {
     row: 20,
     col: 10,
@@ -84,13 +86,14 @@ function max(a, b){
     return a < b ? b : a;
 }
 function reset_all(){
+    lv.textContent = 1;
     clearInterval(osu); clearInterval(tp); clearInterval(lap); clear();
     board.coefficient = 60000; board.visible = 5; board.row = 20, board.col = 10, board.gravity = 750;
     if(cur_gamemode.get("Flash_light mode") == 1) board.coefficient /= 1.3;
     if(cur_gamemode.get("Blindfold mode") == 1) board.coefficient /= 2;
     if(cur_gamemode.get("Hidden mode") == 1) board.coefficient /= 1.2;
-    if(cur_gamemode.get("Hard-rock mode") == 1) board.col = 12, board.gravity = min(board.gravity, 660), board.coefficient /= 1.2;
-    if(cur_gamemode.get("Double-time mode") == 1) board.row = 10, board.gravity = min(board.gravity, 15), board.coefficient /= 1.5;
+    if(cur_gamemode.get("Hard-rock mode") == 1) lv.textContent = 4, board.col = 12, board.gravity = min(board.gravity, level[3][1]), board.coefficient /= 1.2;
+    if(cur_gamemode.get("Double-time mode") == 1) lv.textContent = 11, board.row = 10, board.gravity = min(board.gravity, level[10][1]), board.coefficient /= 1.5;
     if(cur_gamemode.get("Classic mode") == 1) board.coefficient /= 1.3;
     if(cur_gamemode.get("Reverse mode") == 1) board.coefficient /= 2;
     moveable = false; end_game = false; dropable = true;  
