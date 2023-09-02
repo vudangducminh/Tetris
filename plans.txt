@@ -17,6 +17,6 @@
 - add hidden (remove queue) (done)
 - add multiple mode in a play (done)
 - add reverse mods (done)
+- add number of cleared lines (done)
 
-- add number of used pieces & cleared lines
 - add tsd, tst, b2b 

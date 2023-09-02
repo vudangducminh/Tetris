@@ -3,6 +3,7 @@ const heldBoard = document.getElementById('Held_piece');
 const queueBoard = document.getElementById('Queue');
 const score = document.getElementById("ScoreTetris");
 const lines = document.getElementById("Lines");
+const text = document.getElementById("Text");
 var board = {
     row: 20,
     col: 10,
@@ -12,7 +13,7 @@ var board = {
     queue_row: 52,
     queue_col: 18,
     reset: 15,
-    movement_reset: 10,
+    movement_reset: 5,
     num_bag: 1000,
     pc_score: 1000,
     coefficient: 60000,
@@ -65,12 +66,13 @@ priority_I[7] = [[0, 0], [0, 2], [0, -1], [-1, 2], [2, -1]]; // 2 -> 1
 priority_I[8] = [[0, 0], [0, -2], [0, 1], [-1, -2], [1, 1]]; // 3 -> 2
 
 let piece = [];
+let level = [[5, 750], [15, 720], [25, 690], [35, 660], [50, 615], [65, 585], [75, 540], [90, 495], [100, 465], [120, 405], [130, 375], [145, 345], [160, 285], [170, 255], [185, 210], [200, 180], [210, 150], [220, 120], [240, 90], [270, 60], [300, 30], [350, 15], [9999, 0]];
 let holding_state = new Array(board.hold_row + 1);
 let queue_state = new Array(board.queue_row + 1);
 let state = new Array(board.row + 1);
 let shadow_state = new Array(board.row + 1);
 var pressed = {};
-var moveable = false, tp, crr, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0, num_osu = 0, num_tp = 0, hold = -1, holdable = false;
+var moveable = false, tp, crr, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0, num_osu = 0, num_tp = 0, hold = -1, cur_level = 0, holdable = false;
 
 function time_elapsed(){
     return Date.now() - start_time;
@@ -87,12 +89,12 @@ function reset_all(){
     if(cur_gamemode.get("Flash_light mode") == 1) board.coefficient /= 1.3;
     if(cur_gamemode.get("Blindfold mode") == 1) board.coefficient /= 2;
     if(cur_gamemode.get("Hidden mode") == 1) board.coefficient /= 1.2;
-    if(cur_gamemode.get("Hard-rock mode") == 1) board.col = 12, board.gravity = min(board.gravity, 650), board.coefficient /= 1.2;
-    if(cur_gamemode.get("Double-time mode") == 1) board.row = 10, board.gravity = min(board.gravity, 375), board.coefficient /= 1.5;
+    if(cur_gamemode.get("Hard-rock mode") == 1) board.col = 12, board.gravity = min(board.gravity, 660), board.coefficient /= 1.2;
+    if(cur_gamemode.get("Double-time mode") == 1) board.row = 10, board.gravity = min(board.gravity, 15), board.coefficient /= 1.5;
     if(cur_gamemode.get("Classic mode") == 1) board.coefficient /= 1.3;
     if(cur_gamemode.get("Reverse mode") == 1) board.coefficient /= 2;
     moveable = false; end_game = false; dropable = true;  
-    cur_piece = 0; cur_score = 0; is_pc = 0;
+    cur_piece = 0; cur_score = 0; is_pc = 0; cur_level = 0;
     total_lines = 0;
     hold = -1; holdable = false;
     piece = [];  

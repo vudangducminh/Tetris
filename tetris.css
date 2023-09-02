@@ -91,6 +91,13 @@ body {
     border-radius: 20px 20px 20px 20px;
 }
 
+#Text{
+    font-size: 12px;
+    width: 144x;
+    height: 15px;
+    color: white;
+}
+
 #Lines table{
     border-collapse: collapse;
     font-size: 150%;

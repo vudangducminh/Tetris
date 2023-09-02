@@ -6,6 +6,7 @@ function create_board(){
     queueBoard.innerHTML = '';
     lines.innerHTML = '';
     score.innerHTML = '';
+    text.textContent = "Lines";
     var table = document.createElement('table');
     for(var i = 1; i <= board.row; i++){
         var row = document.createElement('tr');

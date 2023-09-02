@@ -43,5 +43,5 @@ function clear_lines(){
 
 function update_lines(){
     let cell = document.getElementById(hash(200, 200));
-    cell.textContent = "Lines cleared: " + total_lines;
+    cell.textContent = total_lines;
 }

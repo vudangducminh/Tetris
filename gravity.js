@@ -1,11 +1,20 @@
 function current_piece(id){
     if(cur_piece + 1 == board.num_bag * 7) return;
-    if(board.gravity > 300 && cur_piece % 10 == 0 && cur_piece) board.gravity -= board.reset;
-    else if(board.gravity > 100 && cur_piece % 15 == 0 && cur_piece) board.gravity -= board.reset;
-    else if(board.gravity > 15 && cur_piece % 20 == 0 && cur_piece) board.gravity -= board.reset;
-    if(cur_piece == 100) board.visible -= 1;
-    else if(cur_piece == 275) board.visible -= 1;
-    else if(cur_piece == 700) board.visible -= 1;
+    if(total_lines >= level[cur_level][0]){
+        cur_level++; 
+        if(cur_gamemode.get("Double-time mode") == 1){
+            board.gravity = level[min(cur_level + 10, level.length)][1];
+        }
+        else if(cur_gamemode.get("Hard-rock mode") == 1){
+            board.gravity = level[min(cur_level + 3, level.length)][1];
+        }
+        else{
+            board.gravity = level[cur_level][1];
+        }
+    }
+    if(cur_level == 2) board.visible -= 1;
+    else if(cur_level == 5) board.visible -= 1;
+    else if(cur_level == 10) board.visible -= 1;
     pressed[67] = 0;
     if(pressed[190]) pressed[190] = 2;
     if(cur_piece > 0 && is_pc == 0){

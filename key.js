@@ -49,7 +49,7 @@ function teleport(){
     num_tp = 0;
     tp = setInterval(function(){
         num_tp++;
-        if(num_tp >= 16){
+        if(num_tp >= 30){
             if(pressed[188]){
                 for(var i = 1; i <= 1; i++) move_left();
             }
