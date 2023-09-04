@@ -1,4 +1,4 @@
-- need to redevelop spin cw & ccw (done)
+- redevelop spin cw & ccw (done)
 - add SRS (done)
 - bug tst (debugged)
 - add multi key press (done)
@@ -13,10 +13,10 @@
 - add gravity increase based on time elapsed (done)
 - add flashlight & blindfold mode (done)
 - add double time (board row / 2) (done)
-- add hard rock (remove hold & increase speed a little bit from the beginning) (done)
+- add hard rock (increase speed & board size a little bit) (done)
 - add hidden (remove queue) (done)
 - add multiple mode in a play (done)
 - add reverse mods (done)
-- add number of cleared lines (done)
+- add number of cleared lines & level (done)
 
 - add tsd, tst, b2b 
