@@ -6,6 +6,10 @@ function is_right_key(x){
     if(x == 32 || x == 65 || x == 67 || x == 82 || x == 88 || x == 90 || x == 188 || x == 190 || x == 191) return true;
     return false;
 }
+
+function skip(){
+    if(!pressed[65] && !pressed[88] && !pressed[90] && !pressed[188] && !pressed[191] && !pressed[190]) num_lap = -Math.floor(board.gravity / board.reset / 2);
+}
 function check_multiple_keys(){
     osu = setInterval(function(){
         if(pressed[190] == 1 && dropable == true) soft_drop(0); 
@@ -42,6 +46,7 @@ function check_multiple_keys(){
             var x = clockwise();
         }
         if(pressed[90] == 1) pressed[90] = 2, counterclockwise();
+        if(num_lap < -Math.floor(board.gravity / board.reset / 2)) skip();
     }, board.movement_reset);
 }
 
