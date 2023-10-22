@@ -4,6 +4,7 @@ function add_score(x){
     if(x == 2) score = 80;
     if(x == 3) score = 140;
     if(x == 4) score = 250;
+    if(x == 6) score = 500;
     if(!score) return score;
     return score * (1 + time_elapsed() / board.coefficient);
 }

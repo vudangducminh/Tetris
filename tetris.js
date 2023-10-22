@@ -23,7 +23,7 @@ var board = {
     maxtime: 2000,
 };
 
-var erased = false, cur_time, end_game, start_time, dropable, lap, cur_score, total_lines, is_pc = 0;
+var erased = false, cur_time, end_game, start_time, dropable, lap, cur_score, total_lines, cur_piece, is_pc = 0;
 // 0 -> blank
 // 1 -> I (light blue)
 // 2 -> L (blue)
@@ -74,7 +74,7 @@ let queue_state = new Array(board.queue_row + 1);
 let state = new Array(board.row + 1);
 let shadow_state = new Array(board.row + 1);
 var pressed = {};
-var moveable = false, tp, crr, osu, cur_time, cur_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0, num_osu = 0, num_tp = 0, hold = -1, cur_level = 0, holdable = false;
+var moveable = false, tp, crr, osu, cur_time, num_piece = 0, r = 0, c = 0, index = 0, degree = 1, num_lap = 0, num_osu = 0, num_tp = 0, hold = -1, cur_level = 0, holdable = false;
 
 function time_elapsed(){
     return Date.now() - start_time;
@@ -97,7 +97,7 @@ function reset_all(){
     if(cur_gamemode.get("Classic mode") == 1) board.coefficient /= 1.3;
     if(cur_gamemode.get("Reverse mode") == 1) board.coefficient /= 2;
     moveable = false; end_game = false; dropable = true;  
-    cur_piece = 0; cur_score = 0; is_pc = 0; cur_level = 0;
+    num_piece = 0; cur_score = 0; is_pc = 0; cur_level = 0;
     total_lines = 0;
     hold = -1; holdable = false;
     piece = [];  

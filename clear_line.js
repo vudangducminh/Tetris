@@ -1,6 +1,7 @@
-function clear_lines(){
+function clear_lines(row, col){
     var num_lines = 0;
-    for(var i = max(1, r - 2); i <= min(board.row, r + 2); i++){
+    var is_tspin = detect_tspin(row, col);
+    for(var i = max(1, row - 2); i <= min(board.row, row + 2); i++){
         var flag = 0;
         for(var j = 1; j <= board.col; j++){
             if(!ok(state[i][j])){
@@ -12,9 +13,12 @@ function clear_lines(){
             for(var j = 1; j <= board.col; j++) state[i][j] = 0;
         }
     }
-    cur_score += add_score(num_lines);
+    if(is_tspin == true){
+        cur_score += add_score(num_lines * 2);
+    }
+    else cur_score += add_score(num_lines);
     is_pc -= num_lines * 10;
-    for(var i = min(board.row, r + 2); i >= 1; i--){
+    for(var i = min(board.row, row + 2); i >= 1; i--){
         var flag = 0;
         for(var j = 1; j <= board.col; j++){
             if(state[i][j]){
@@ -43,4 +47,10 @@ function clear_lines(){
 
 function update_lines(){
     lines.textContent = total_lines;
+}
+
+function detect_tspin(row, col){
+    if(piece[cur_piece] != 7) return false;
+    if((col >= 2 && ok(state[row - 1][col - 1])) || (col < board.col && ok(state[row - 1][col + 1]))) return true;
+    else return false;
 }

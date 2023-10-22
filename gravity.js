@@ -1,6 +1,7 @@
 function current_piece(id){  
+    cur_piece = id;
     pressed[32] = 2;
-    if(cur_piece + 1 == board.num_bag * 7) return;
+    if(num_piece + 1 == board.num_bag * 7) return;
     if(total_lines >= level[cur_level][0]){
         cur_level++; 
         lv.textContent = cur_level + 1;
@@ -21,7 +22,7 @@ function current_piece(id){
     }
     if(pressed[190]) pressed[190] = 2;
     pressed[67] = 0;
-    if(cur_piece > 0 && is_pc == 0){
+    if(num_piece > 0 && is_pc == 0){
         cur_score += board.pc_score * (1 + time_elapsed() / board.coefficient); update_score();
     }
     // console.log(id);
@@ -40,7 +41,7 @@ function current_piece(id){
     begin_state(); shadow_piece();
     lap = setInterval(function(){ 
         num_lap++;
-        if(num_lap >= 6){
+        if(num_lap >= 4){
             if(check_hard_drop == false){
                 check_hard_drop = true;   
                 pressed[32] = 0;
@@ -55,8 +56,8 @@ function current_piece(id){
             holdable = false;
             is_need = false;
             clearInterval(lap);
-            add_queue(++cur_piece);
-            current_piece(cur_piece);
+            add_queue(++num_piece);
+            current_piece(num_piece);
         }
         else{
             if(num_lap >= 0 && num_lap % (board.gravity / board.reset) == 0){
@@ -83,8 +84,8 @@ function current_piece(id){
                             holdable = false;
                             is_need = false;
                             clearInterval(lap);
-                            add_queue(++cur_piece);
-                            current_piece(cur_piece);
+                            add_queue(++num_piece);
+                            current_piece(num_piece);
                         }
                     }
                     else{

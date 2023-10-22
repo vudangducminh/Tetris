@@ -21,22 +21,22 @@ function check_multiple_keys(){
             if(cur_gamemode.get("Classic mode") == 0){
                 pressed[67] = 2; 
                 if(hold == -1){
-                    hold = cur_piece;
+                    hold = num_piece;
                     holdable = true;
                     erase(); clearInterval(lap);
                     if(is_pc == 0) cur_score -= board.pc_score;
                     add_holding_piece(piece[hold]);
-                    add_queue(++cur_piece);
-                    current_piece(cur_piece);
+                    add_queue(++num_piece);
+                    current_piece(num_piece);
                 }
                 else{
                     if(!holdable){
                         holdable = true;
                         erase(); clearInterval(lap);
                         if(is_pc == 0) cur_score -= board.pc_score;
-                        add_holding_piece(piece[cur_piece]);
+                        add_holding_piece(piece[num_piece]);
                         current_piece(hold);
-                        hold = cur_piece;
+                        hold = num_piece;
                     }
                 }
             }

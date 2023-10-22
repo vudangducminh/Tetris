@@ -1,5 +1,5 @@
 function update_color(){
-    clear_lines();
+    clear_lines(r, c);
     for(var i = 1; i <= board.row; i++){
         for(var j = 1; j <= board.col; j++){
             let cell = document.getElementById(hash(i, j));
