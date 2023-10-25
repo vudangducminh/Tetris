@@ -139,3 +139,17 @@ body {
     width: 6px;
     height: 6px;
 }
+
+#Sent_type{
+    font-size: 39px;
+    color: white;
+}
+
+#Tspin{
+    font-size: 25px;
+    color: purple;
+}
+#Space{
+    font-size: 260px;
+    white-space: pre;
+}

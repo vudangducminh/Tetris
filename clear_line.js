@@ -13,10 +13,25 @@ function clear_lines(row, col){
             for(var j = 1; j <= board.col; j++) state[i][j] = 0;
         }
     }
-    if(is_tspin == true){
+    if(is_tspin == true && num_lines > 0){
+        tspin.textContent = "T-SPIN";
+        tspin.style.color = 'purple';
+        setTimeout(() => {
+            tspin.textContent = "";
+        }, 3000);
         cur_score += add_score(num_lines * 2);
     }
     else cur_score += add_score(num_lines);
+    if(num_lines > 0){
+        if(num_lines == 1) sent_type.textContent = "SINGLE";
+        if(num_lines == 2) sent_type.textContent = "DOUBLE";
+        if(num_lines == 3) sent_type.textContent = "TRIPLE";
+        if(num_lines == 4) sent_type.textContent = "QUAD";
+        sent_type.style.color = 'white';
+        setTimeout(() => {
+            sent_type.textContent = "";
+        }, 3000);
+    }
     is_pc -= num_lines * 10;
     for(var i = min(board.row, row + 2); i >= 1; i--){
         var flag = 0;

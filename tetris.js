@@ -6,6 +6,8 @@ const lines = document.getElementById("Lines");
 const text = document.getElementById("Text");
 const lv = document.getElementById("Level");
 const text2 = document.getElementById("Text2");
+const sent_type = document.getElementById("Sent_type");
+const tspin = document.getElementById("Tspin");
 var board = {
     row: 20,
     col: 10,
@@ -87,6 +89,10 @@ function max(a, b){
 }
 function reset_all(){
     lv.textContent = 1;
+    sent_type.textContent = "OSU!";
+    tspin.textContent = "OSU!";
+    sent_type.style.color = 'black';
+    tspin.style.color = 'black';
     clearInterval(osu); clearInterval(tp); clearInterval(lap); clear();
     board.coefficient = 60000; board.visible = 5; board.row = 20, board.col = 10, board.gravity = 750;
     if(cur_gamemode.get("Flash_light mode") == 1) board.coefficient /= 1.3;

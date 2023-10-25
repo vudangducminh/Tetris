@@ -54,12 +54,12 @@ function teleport(){
     num_tp = 0;
     tp = setInterval(function(){
         num_tp++;
-        if(num_tp >= 25){
+        if(num_tp >= 30){
             if(pressed[188]){
-                for(var i = 1; i <= 1; i++) move_left();
+                for(var i = 1; i <= 10; i++) move_left();
             }
             if(pressed[191]){
-                for(var i = 1; i <= 1; i++)  move_right();
+                for(var i = 1; i <= 10; i++)  move_right();
             }
         }
     }, board.movement_reset);

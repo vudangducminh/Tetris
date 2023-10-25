@@ -74,7 +74,7 @@ function current_piece(id){
                         // console.log("REAL STOP: ", r, c);
                         if(!crr){
                             moveable = true;
-                            crr = 1, num_lap = -(board.gravity / board.reset) * 2;
+                            crr = 1, num_lap = -(board.gravity / board.reset);
                         }
                         else{
                             moveable = false; 
