@@ -18,5 +18,9 @@
 - add multiple mode in a play (done)
 - add reverse mods (done)
 - add number of cleared lines & level (done)
+- add tsd, tst (done)
+- add text after clearing lines (done)
 
-- add tsd, tst, b2b 
+
+- improve control
+- add b2b 
