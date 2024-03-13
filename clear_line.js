@@ -15,9 +15,9 @@ function clear_lines(row, col){
     }
     if(is_tspin == true && num_lines > 0){
         tspin.textContent = "T-SPIN";
-        tspin.style.color = 'purple';
+        tspin.style.color = "purple";
         setTimeout(() => {
-            tspin.textContent = "";
+            tspin.style.color = "black";
         }, 3000);
         cur_score += add_score(num_lines * 2);
     }
@@ -27,9 +27,9 @@ function clear_lines(row, col){
         if(num_lines == 2) sent_type.textContent = "DOUBLE";
         if(num_lines == 3) sent_type.textContent = "TRIPLE";
         if(num_lines == 4) sent_type.textContent = "QUAD";
-        sent_type.style.color = 'white';
+        sent_type.style.color = "white";
         setTimeout(() => {
-            sent_type.textContent = "";
+            sent_type.style.color = "black";
         }, 3000);
     }
     is_pc -= num_lines * 10;

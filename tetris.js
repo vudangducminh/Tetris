@@ -81,12 +81,7 @@ var moveable = false, tp, crr, osu, cur_time, num_piece = 0, r = 0, c = 0, index
 function time_elapsed(){
     return Date.now() - start_time;
 }
-function min(a, b){
-    return a > b ? b : a;
-}
-function max(a, b){
-    return a < b ? b : a;
-}
+
 function reset_all(){
     lv.textContent = 1;
     sent_type.textContent = "OSU!";
@@ -157,22 +152,8 @@ function game_over(){
 }
 
 function remove_button(){
-    let element = document.getElementById('mode1');
-    element.parentNode.removeChild(element);
-    element = document.getElementById('mode2');
-    element.parentNode.removeChild(element);
-    element = document.getElementById('mode3');
-    element.parentNode.removeChild(element);
-    element = document.getElementById('mode4');
-    element.parentNode.removeChild(element);
-    element = document.getElementById('mode5');
-    element.parentNode.removeChild(element);
-    element = document.getElementById('mode6');
-    element.parentNode.removeChild(element);
-    element = document.getElementById('mode7');
-    element.parentNode.removeChild(element);
-    element = document.getElementById('mode8');
-    element.parentNode.removeChild(element);
+    let element = document.querySelector('.button_design');
+    element.classList.add("hidden-text");
 }
 function Flashlight(){
     let element = document.getElementById('mode1');

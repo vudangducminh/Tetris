@@ -55,6 +55,10 @@ body {
     text-align: center;
 }
 
+.hidden-text{
+    display: none;
+}
+
 #BoardTetris table {
     border-collapse: collapse;
     font-size: 150%;

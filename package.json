@@ -1,0 +1,6 @@
+{
+    "scripts": {
+      "start": "node src/start.js"
+    },
+    "version": "0.2.0"
+}

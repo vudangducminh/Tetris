@@ -21,6 +21,6 @@
 - add tsd, tst (done)
 - add text after clearing lines (done)
 
-
+- display pc & end game
 - improve control
 - add b2b 
